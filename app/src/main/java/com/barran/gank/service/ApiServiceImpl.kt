@@ -35,7 +35,7 @@ object ApiServiceImpl {
      */
     fun getDailyData(year: Int, month: Int, day: Int, subscriber: Observer<DailyDataResponse>) {
 
-        RetrofitClient.instance.apiService.getDailyData("day/$year/$month/$day")
+        RetrofitClient.instance.apiService.getDailyData("api/day/$year/$month/$day")
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

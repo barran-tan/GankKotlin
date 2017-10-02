@@ -56,7 +56,7 @@ class DailyContentFragment : Fragment() {
         if (arguments != null) {
             time = arguments.getString(EXTRA_DATE)
         }
-        if (time != time) {
+        if (time != null) {
             date.timeInMillis = time!!.toTimemillis()
         }else{
             date.timeInMillis = System.currentTimeMillis()
@@ -108,7 +108,7 @@ class DailyContentFragment : Fragment() {
     }
 
     private fun loadDailyData() {
-        ApiServiceImpl.getDailyData(date.get(Calendar.YEAR), date.get(Calendar.MONTH + 1), date.get(Calendar.DAY_OF_MONTH), object : Observer<DailyDataResponse> {
+        ApiServiceImpl.getDailyData(date.get(Calendar.YEAR), date.get(Calendar.MONTH) + 1, date.get(Calendar.DAY_OF_MONTH), object : Observer<DailyDataResponse> {
             override fun onSubscribe(d: Disposable) {
 
             }
