@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="font_size_16">16sp</dimen>
+    <dimen name="font_size_18">18sp</dimen>
+    <dimen name="font_size_14">14sp</dimen>
+
+    <dimen name="text_title">@dimen/font_size_18</dimen>
+    <dimen name="text_content">@dimen/font_size_16</dimen>
+    <dimen name="text_content_summary">@dimen/font_size_14</dimen>
+
+    <dimen name="dimen_1">1dp</dimen>
+    <dimen name="dimen_6">6dp</dimen>
+    <dimen name="dimen_12">12dp</dimen>
+    <dimen name="dimen_18">18dp</dimen>
+
+    <dimen name="default_dimen_margin">@dimen/dimen_12</dimen>
+    <dimen name="default_dimen_divider">@dimen/dimen_1</dimen>
+    <dimen name="default_dimen_text">@dimen/dimen_6</dimen>
+
+</resources>

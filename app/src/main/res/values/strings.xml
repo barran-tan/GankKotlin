@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">GankKotlinDemo</string>
+    <string name="app_name">GankKotlin</string>
+    <string name="welfare">福利</string>
+    <string name="history">历史资讯</string>
 </resources>

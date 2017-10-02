@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/item_daily_info_group_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_12"
+        android:text="Android"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/text_title" />
+
+    <View
+        android:id="@+id/item_daily_info_group_divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_1"
+        android:layout_marginLeft="@dimen/dimen_12"
+        android:background="@color/divider_list_color" />
+
+</LinearLayout>
