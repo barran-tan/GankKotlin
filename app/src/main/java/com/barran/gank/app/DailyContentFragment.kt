@@ -2,10 +2,12 @@ package com.barran.gank.app
 
 import android.content.Intent
 import android.graphics.Rect
+import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +25,6 @@ import com.barran.gank.utils.load
 import com.barran.gank.utils.toTimemillis
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
-import okhttp3.ResponseBody
 import java.util.*
 
 /**
@@ -57,8 +58,8 @@ class DailyContentFragment : Fragment() {
             time = arguments.getString(EXTRA_DATE)
         }
         if (time != null) {
-            date.timeInMillis = time!!.toTimemillis()
-        }else{
+            date.timeInMillis = time.toTimemillis()
+        } else {
             date.timeInMillis = System.currentTimeMillis()
         }
 
@@ -82,8 +83,8 @@ class DailyContentFragment : Fragment() {
             override fun onItemClick(holder: BaseRecyclerHolder, position: Int) {
                 val data = contentList[position]
                 if (data.url != null) {
-                    val intent = Intent(activity, HtmlActivity::class.java)
-                    intent.putExtra(HtmlActivity.EXTRA_URL, data.url)
+                    val intent = Intent(Intent.ACTION_VIEW)
+                    intent.data = Uri.parse(data.url)
                     startActivity(intent)
                 }
             }
@@ -110,40 +111,44 @@ class DailyContentFragment : Fragment() {
     private fun loadDailyData() {
         ApiServiceImpl.getDailyData(date.get(Calendar.YEAR), date.get(Calendar.MONTH) + 1, date.get(Calendar.DAY_OF_MONTH), object : Observer<DailyDataResponse> {
             override fun onSubscribe(d: Disposable) {
-
+                Log.v("loadDailyData", "onSubscribe")
             }
 
             override fun onNext(t: DailyDataResponse) {
+                Log.v("loadDailyData", "onNext size:${t.results.size}")
                 t.results.iterator().forEach {
-                    val group = DataInfo()
-                    group.type = it.keys.first()
-                    contentList.add(group)
-                    it.values.iterator().forEach { contentList.addAll(it) }
+                    if (GankDataType.WELFARE.typeName == it.key) {
+                        image.load(it.value[0].url)
+                    } else {
+                        val group = DataInfo()
+                        group.type = it.key
+                        contentList.add(group)
+                        contentList.addAll(it.value)
+                    }
                 }
 
                 adapter.notifyDataSetChanged()
             }
 
             override fun onComplete() {
-
+                Log.v("loadDailyData", "onComplete")
             }
 
             override fun onError(e: Throwable) {
-
+                Log.v("loadDailyData", "onError")
             }
 
         })
     }
 
     private inner class Adapter(clickListener: RecyclerViewItemClickListener?) : BaseRecyclerAdapter(clickListener) {
-        override fun createHolder(parent: ViewGroup?, viewType: Int): BaseRecyclerHolder {
-            return when (viewType) {
-                TYPE_GROUP -> GroupHolder(activity.layoutInflater.inflate(R.layout.item_daily_info_group, parent, false))
-                TYPE_CONTENT -> ItemHolder(activity.layoutInflater.inflate(R.layout.item_daily_info_content, parent, false), itemClickListener)
-                else
-                -> throw IllegalArgumentException()
-            }
-        }
+        override fun createHolder(parent: ViewGroup?, viewType: Int): BaseRecyclerHolder =
+                when (viewType) {
+                    TYPE_GROUP -> GroupHolder(activity.layoutInflater.inflate(R.layout.item_daily_info_group, parent, false))
+                    TYPE_CONTENT -> ItemHolder(activity.layoutInflater.inflate(R.layout.item_daily_info_content, parent, false), itemClickListener)
+                    else
+                    -> throw IllegalArgumentException()
+                }
 
         override fun onBindViewHolder(holder: BaseRecyclerHolder?, position: Int) {
             if (holder is ItemHolder) {
@@ -183,6 +188,8 @@ class ItemHolder(itemView: View, clickListener: RecyclerViewItemClickListener?) 
 
     private val divider: View = itemView.findViewById(R.id.item_daily_info_content_divider)
 
+    var hideDivider = false
+
     fun update(data: DataInfo) {
         image.load(data.images?.get(0))
         title.text = data.desc
@@ -192,6 +199,12 @@ class ItemHolder(itemView: View, clickListener: RecyclerViewItemClickListener?) 
             itemView.setBackgroundResource(R.drawable.bg_read)
         else {
             itemView.setBackgroundResource(R.drawable.bg_unread)
+        }
+
+        if (hideDivider) {
+            divider.visibility = View.GONE
+        } else {
+            divider.visibility = View.VISIBLE
         }
     }
 }

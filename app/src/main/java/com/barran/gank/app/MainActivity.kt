@@ -15,12 +15,15 @@ import android.view.MenuItem
 import com.barran.gank.R
 import com.barran.gank.service.beans.GankDataType
 
+/**
+ * @author tanwei
+ */
 class MainActivity : AppCompatActivity() {
 
     lateinit var fragments: SparseArray<Fragment>
 
-    val typeArray = arrayOf(GankDataType.ANDROID.ordinal, GankDataType.IOS.ordinal, GankDataType.PASTTIME.ordinal
-            , GankDataType.EXPANDINFOMATION.ordinal, GankDataType.FRONTEND.ordinal, GankDataType.RECOMMEND.ordinal, GankDataType.APP.ordinal)
+    val typeArray = arrayOf(GankDataType.ANDROID.ordinal, GankDataType.PASTTIME.ordinal
+            , GankDataType.EXPANDINFOMATION.ordinal, GankDataType.FRONTEND.ordinal, GankDataType.RECOMMEND.ordinal)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +52,12 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        findViewById(R.id.activity_main_fab).setOnClickListener {  }
+        findViewById(R.id.activity_main_fab).setOnClickListener {
+            startActivity(Intent(
+                    this,
+                    ImagesActivity::class.java
+            ))
+        }
     }
 
     private fun initViewPager(viewPager: ViewPager) {
@@ -60,14 +68,12 @@ class MainActivity : AppCompatActivity() {
                     fragment = fragments.get(position)
                 } else {
                     fragment =
-                            when (position) {
-                                GankDataType.ANDROID.ordinal -> DataListFragment(position)
-                                GankDataType.IOS.ordinal -> DataListFragment(position)
-                                GankDataType.PASTTIME.ordinal -> DataListFragment(position)
-                                GankDataType.EXPANDINFOMATION.ordinal -> DataListFragment(position)
-                                GankDataType.FRONTEND.ordinal -> DataListFragment(position)
-                                GankDataType.RECOMMEND.ordinal -> DataListFragment(position)
-                                GankDataType.APP.ordinal -> DataListFragment(position)
+                            when (typeArray[position]) {
+                                GankDataType.ANDROID.ordinal -> DataListFragment(typeArray[position])
+                                GankDataType.PASTTIME.ordinal -> DataListFragment(typeArray[position])
+                                GankDataType.EXPANDINFOMATION.ordinal -> DataListFragment(typeArray[position])
+                                GankDataType.FRONTEND.ordinal -> DataListFragment(typeArray[position])
+                                GankDataType.RECOMMEND.ordinal -> DataListFragment(typeArray[position])
                                 else -> DataListFragment(GankDataType.ANDROID.ordinal)
                             }
                     fragments.put(position, fragment)
@@ -79,7 +85,7 @@ class MainActivity : AppCompatActivity() {
             override fun getCount(): Int = typeArray.size
 
             override fun getPageTitle(position: Int): CharSequence =
-                    GankDataType.getName(position)
+                    GankDataType.getName(typeArray[position])
         }
     }
 
@@ -93,9 +99,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if(item?.itemId == R.id.menu_history) {
-            val intent = Intent(this, HistoryDatesActivity::class.java)
-            startActivity(intent)
+        when (item?.itemId) {
+            R.id.menu_history -> startActivity(Intent(this, HistoryDatesActivity::class.java))
+            android.R.id.home -> onBackPressed()
         }
         return true
     }

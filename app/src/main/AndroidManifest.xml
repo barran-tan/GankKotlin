@@ -29,7 +29,6 @@
         <activity
             android:name=".app.HistoryDatesActivity"
             android:label="@string/history" />
-        <activity android:name=".app.HtmlActivity" />
     </application>
 
 </manifest>

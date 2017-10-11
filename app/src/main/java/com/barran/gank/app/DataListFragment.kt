@@ -1,6 +1,7 @@
 package com.barran.gank.app
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
@@ -14,6 +15,7 @@ import com.barran.gank.R
 import com.barran.gank.libs.recycler.BaseRecyclerAdapter
 import com.barran.gank.libs.recycler.BaseRecyclerHolder
 import com.barran.gank.libs.recycler.RecyclerViewItemClickListener
+import com.barran.gank.libs.recycler.VertivalItemDecoration
 import com.barran.gank.service.ApiServiceImpl
 import com.barran.gank.service.beans.DataInfo
 import com.barran.gank.service.beans.DatasResponse
@@ -56,14 +58,17 @@ class DataListFragment(infoType: Int = GankDataType.ANDROID.ordinal) : Fragment(
         adapter = DataAdapter(object : RecyclerViewItemClickListener {
             override fun onItemClick(holder: BaseRecyclerHolder, position: Int) {
                 val data = dataList[position]
-                val intent = Intent(activity, HtmlActivity::class.java)
-                intent.putExtra(HtmlActivity.EXTRA_URL, data.url)
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse(data.url)
                 startActivity(intent)
             }
         })
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(activity)
+        val itemDecoration = VertivalItemDecoration()
+        itemDecoration.setDividerHeight(resources.getDimensionPixelOffset(R.dimen.default_dimen_text))
+        recyclerView.addItemDecoration(itemDecoration)
 
         refreshLayout.setOnRefreshListener {
             page = 0
@@ -100,6 +105,7 @@ class DataListFragment(infoType: Int = GankDataType.ANDROID.ordinal) : Fragment(
         : BaseRecyclerAdapter(clickListener) {
         override fun onBindViewHolder(holder: BaseRecyclerHolder?, position: Int) {
             if (holder is ItemHolder) {
+                holder.hideDivider = true
                 holder.update(dataList[position])
             }
         }

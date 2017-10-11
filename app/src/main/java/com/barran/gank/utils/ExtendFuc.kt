@@ -22,14 +22,14 @@ fun AppCompatActivity.push(containerId: Int, fragment: Fragment) {
 }
 
 fun ImageView.load(url: String?) {
-    Picasso.with(this.context).load(url).placeholder(R.mipmap.load).error(R.mipmap.failpicture).into(this)
+    Picasso.with(this.context).load(url).placeholder(R.mipmap.empty).error(R.mipmap.failpicture).into(this)
 }
 
 class SpannableData(val spannable: Any, val start: Int, val end: Int) {
     var flags = SpannableString.SPAN_INCLUSIVE_INCLUSIVE
 }
 
-fun String.spanable(vararg spannable: SpannableData): SpannableString {
+fun String.spannable(vararg spannable: SpannableData): SpannableString {
     val result = SpannableString(this)
 
     for (it in spannable) {
@@ -37,6 +37,7 @@ fun String.spanable(vararg spannable: SpannableData): SpannableString {
     }
 
     return result
+
 }
 
 const val FORMAT_DEFAULT = "yyyy/MM/dd"

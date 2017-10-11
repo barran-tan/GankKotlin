@@ -15,9 +15,7 @@ import com.barran.gank.libs.recycler.BaseRecyclerAdapter
 import com.barran.gank.libs.recycler.BaseRecyclerHolder
 import com.barran.gank.libs.recycler.RecyclerViewItemClickListener
 import com.barran.gank.service.ApiServiceImpl
-import com.barran.gank.service.beans.DateInfo
 import com.barran.gank.service.beans.HistoryDates
-import com.barran.gank.utils.SPUtils
 import com.vivian.timelineitemdecoration.itemdecoration.DotItemDecoration
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable

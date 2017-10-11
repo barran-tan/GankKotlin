@@ -3,6 +3,8 @@ package com.barran.gank.app
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
+import android.view.MenuItem
 import com.barran.gank.R
 import com.barran.gank.utils.push
 
@@ -17,7 +19,15 @@ class HistoryDatesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_empty)
+        setSupportActionBar(findViewById(R.id.activity_empty_toolbar) as Toolbar)
 
         push(R.id.activity_empty_container, HistoryDatesFragment())
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            android.R.id.home -> onBackPressed()
+        }
+        return true
     }
 }

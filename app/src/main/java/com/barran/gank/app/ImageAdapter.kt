@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.barran.gank.R
 import com.barran.gank.libs.recycler.BaseRecyclerHolder
 import com.barran.gank.libs.recycler.RecyclerViewItemClickListener
 
@@ -17,21 +18,20 @@ import shivam.developer.featuredrecyclerview.FeatureRecyclerViewAdapter
 /**
  * 展示图片的adapter[FeaturedRecyclerView][shivam.developer.featuredrecyclerview.FeaturedRecyclerView]
  *
- * @author barran_tan
+ * @author tanwei
  */
 class ImageAdapter(private val context: Context, private val imageList: List<String>, private var itemClickListener: RecyclerViewItemClickListener?) : FeatureRecyclerViewAdapter<ImageAdapter.CustomRecyclerViewHolder>() {
-    private val images = IntArray(5)
 
     override fun onCreateFeaturedViewHolder(parent: ViewGroup, viewType: Int): CustomRecyclerViewHolder {
         return CustomRecyclerViewHolder(
-                LayoutInflater.from(parent.context)
-                        .inflate(0, parent, false), itemClickListener)
+                LayoutInflater.from(context)
+                        .inflate(R.layout.item_image, parent, false), itemClickListener)
     }
 
     override fun onBindFeaturedViewHolder(holder: CustomRecyclerViewHolder, position: Int) {
         Picasso.with(context)
-                .load(images[position % 4]).into(holder.ivBackground)
-        holder.tvHeading!!.text = imageList[position]
+                .load(imageList[position]).into(holder.image)
+        holder.title!!.text = imageList[position]
     }
 
     override fun getFeaturedItemsCount(): Int {
@@ -39,16 +39,21 @@ class ImageAdapter(private val context: Context, private val imageList: List<Str
     }
 
     override fun onSmallItemResize(holder: CustomRecyclerViewHolder, position: Int, offset: Float) {
-        holder.tvHeading!!.alpha = offset / 100f
+        holder.title!!.alpha = offset / 100f
     }
 
     override fun onBigItemResize(holder: CustomRecyclerViewHolder, position: Int, offset: Float) {
-        holder.tvHeading!!.alpha = offset / 100f
+        holder.title!!.alpha = offset / 100f
     }
 
     class CustomRecyclerViewHolder(itemView: View, clickListener: RecyclerViewItemClickListener?) : BaseRecyclerHolder(itemView, clickListener) {
 
-        internal var ivBackground: ImageView? = null
-        internal var tvHeading: TextView? = null
+        internal var image: ImageView? = null
+        internal var title: TextView? = null
+
+        init {
+            image = itemView.findViewById(R.id.item_image_icon) as ImageView
+            title = itemView.findViewById(R.id.item_image_title) as TextView
+        }
     }
 }
