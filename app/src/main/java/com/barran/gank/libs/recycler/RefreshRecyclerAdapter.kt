@@ -68,6 +68,9 @@ abstract class RefreshRecyclerAdapter<T>(private val dataList: List<T>, itemClic
 
     abstract fun createContentHolder(parent: ViewGroup?, viewType: Int): BaseRecyclerHolder
 
+    /**
+     * 注意：覆写此方法需要调用super
+     */
     override fun onBindViewHolder(holder: BaseRecyclerHolder?, position: Int) {
         if (position == dataList.size) {
             holder as FooterViewHolder

@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import com.barran.gank.R
 import com.barran.gank.libs.recycler.BaseRecyclerHolder
 import com.barran.gank.libs.recycler.RecyclerViewItemClickListener
+import com.barran.gank.libs.recycler.RefreshLoadMoreListener
+import com.barran.gank.libs.recycler.RefreshScrollListener
 import com.barran.gank.service.ApiServiceImpl
 import com.barran.gank.service.beans.DatasResponse
 import com.barran.gank.service.beans.GankDataType
@@ -25,7 +27,7 @@ import shivam.developer.featuredrecyclerview.FeaturedRecyclerView
 class ImageListFragment : Fragment() {
 
     companion object {
-        val pageCount = 20
+        val pageCount = 10
     }
 
     var imageClickListener: OnImageClick? = null
@@ -33,6 +35,10 @@ class ImageListFragment : Fragment() {
     private lateinit var adapter: ImageAdapter
 
     private val images = ArrayList<String>()
+
+    private var mPage = 1
+
+    private var isLoading = false
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater?.inflate(R.layout.fragment_image_list, container, false)
@@ -51,29 +57,45 @@ class ImageListFragment : Fragment() {
         })
         recyclerView.adapter = adapter
 
-        getImages()
+        recyclerView.addOnScrollListener(RefreshScrollListener(object : RefreshLoadMoreListener {
+            override fun loadMore() {
+                if (isLoading) {
+                    return
+                }
+                isLoading = true
+                getImages(mPage++)
+                Log.i("ImageList", "loadMore nextPage $mPage")
+            }
+
+        }))
+
+        getImages(mPage++)
     }
 
-    private fun loadImagesFromLocal(){
+    private fun loadImagesFromLocal() {
 
     }
 
     private fun getImages(page: Int = 0) {
+        Log.i("ImageList", "getImages page : $page")
         ApiServiceImpl.getDataByType(GankDataType.WELFARE.typeName, pageCount, page, object : Observer<DatasResponse> {
             override fun onComplete() {
                 Log.v("getImages", "onComplete")
+                isLoading = false
             }
 
             override fun onError(e: Throwable) {
                 Log.v("getImages", "onError")
+                isLoading = false
             }
 
             override fun onNext(t: DatasResponse) {
+                isLoading = false
                 Log.v("getImages", "results size:${t.results.size}")
 
                 t.results.filter { !it.url.isNullOrEmpty() }.forEach { images.add(it.url!!) }
 
-                Log.v("getImages", "imsge size:${images.size}")
+                Log.v("getImages", "image size:${images.size}")
 
                 adapter.notifyDataSetChanged()
             }
