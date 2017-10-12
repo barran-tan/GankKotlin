@@ -21,6 +21,7 @@ import com.barran.gank.service.ApiServiceImpl
 import com.barran.gank.service.beans.DailyDataResponse
 import com.barran.gank.service.beans.DataInfo
 import com.barran.gank.service.beans.GankDataType
+import com.barran.gank.utils.dateFormat
 import com.barran.gank.utils.load
 import com.barran.gank.utils.toTimemillis
 import io.reactivex.Observer
@@ -185,6 +186,8 @@ class ItemHolder(itemView: View, clickListener: RecyclerViewItemClickListener?) 
     private val title: TextView = itemView.findViewById(R.id.item_daily_info_content_title) as TextView
     private val author: TextView = itemView
             .findViewById(R.id.item_daily_info_content_author) as TextView
+    private val time: TextView = itemView
+            .findViewById(R.id.item_daily_info_content_time) as TextView
 
     private val divider: View = itemView.findViewById(R.id.item_daily_info_content_divider)
 
@@ -194,6 +197,7 @@ class ItemHolder(itemView: View, clickListener: RecyclerViewItemClickListener?) 
         image.load(data.images?.get(0))
         title.text = data.desc
         author.text = data.who
+        time.text = data.publishedAt?.dateFormat()
 
         if (data.read)
             itemView.setBackgroundResource(R.drawable.bg_read)

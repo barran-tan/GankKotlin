@@ -40,10 +40,22 @@ public interface APIService {
      */
     @GET("api/day/history")
     Observable<HistoryDates> getHistoryDates();
-    
+
+    /**
+     * 获取特定日期网站数据:http://gank.io/api/day/年/月/日
+     * http://gank.io/api/day/2015/08/06
+     */
     @GET("{url}")
     Observable<DailyDataResponse> getDailyData(@Path("url") String url);
-    
+
+    /**
+     * 获取分类数据: http://gank.io/api/data/数据类型/请求个数/第几页
+     *
+     * <p>注意页数从1开始，传入0页数第1页</p>
+     *
+     * http://gank.io/api/data/Android/10/1
+     *
+     */
     @GET("{url}")
     Observable<DatasResponse> getDataByType(@Path("url") String url);
 }

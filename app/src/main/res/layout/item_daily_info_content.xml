@@ -42,6 +42,18 @@
             android:textColor="@color/gray_dark"
             android:textSize="@dimen/text_content_summary" />
 
+        <TextView
+            android:id="@+id/item_daily_info_content_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/item_daily_info_content_author"
+            android:layout_marginLeft="@dimen/default_dimen_margin"
+            android:layout_toRightOf="@id/item_daily_info_content_author"
+            android:gravity="center_vertical"
+            android:text="time"
+            android:textColor="@color/gray_dark"
+            android:textSize="@dimen/text_content_summary" />
+
         <ImageView
             android:id="@+id/item_daily_info_content_arrow"
             android:layout_width="wrap_content"
@@ -49,7 +61,6 @@
             android:layout_alignParentRight="true"
             android:layout_alignTop="@id/item_daily_info_content_author"
             android:layout_marginRight="@dimen/default_dimen_margin"
-            android:background="@android:color/white"
             android:src="@mipmap/arrow_right" />
 
     </RelativeLayout>

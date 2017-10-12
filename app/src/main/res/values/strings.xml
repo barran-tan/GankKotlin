@@ -2,4 +2,5 @@
     <string name="app_name">GankKotlin</string>
     <string name="welfare">福利</string>
     <string name="history">历史资讯</string>
+    <string name="up_refresh_load_more">上拉加载更多</string>
 </resources>

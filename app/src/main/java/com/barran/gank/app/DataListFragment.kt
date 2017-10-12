@@ -7,15 +7,13 @@ import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
 import com.barran.gank.R
-import com.barran.gank.libs.recycler.BaseRecyclerAdapter
-import com.barran.gank.libs.recycler.BaseRecyclerHolder
-import com.barran.gank.libs.recycler.RecyclerViewItemClickListener
-import com.barran.gank.libs.recycler.VertivalItemDecoration
+import com.barran.gank.libs.recycler.*
 import com.barran.gank.service.ApiServiceImpl
 import com.barran.gank.service.beans.DataInfo
 import com.barran.gank.service.beans.DatasResponse
@@ -32,8 +30,8 @@ import java.util.ArrayList
  */
 class DataListFragment(infoType: Int = GankDataType.ANDROID.ordinal) : Fragment() {
 
-    private val pageCount = 10
-    private var page = 0
+    private val mPageCount = 10
+    private var mPage = 1
     private var type: String = GankDataType.getName(infoType)
 
     private val dataList = ArrayList<DataInfo>()
@@ -55,7 +53,19 @@ class DataListFragment(infoType: Int = GankDataType.ANDROID.ordinal) : Fragment(
         refreshLayout = view?.findViewById(R.id.fragment_info_list_refresh_layout) as SwipeRefreshLayout
         recyclerView = view.findViewById(R.id.fragment_info_list_recycler_view) as RecyclerView
 
-        adapter = DataAdapter(object : RecyclerViewItemClickListener {
+        recyclerView.addOnScrollListener(RefreshScrollListener(object : RefreshLoadMoreListener {
+            override fun loadMore() {
+                if (adapter.isLoading) {
+                    return
+                }
+                adapter.showLoading()
+                getData(mPage++)
+                Log.i("DataList", "loadMore nextPage $mPage")
+            }
+
+        }))
+
+        adapter = DataAdapter(dataList, object : RecyclerViewItemClickListener {
             override fun onItemClick(holder: BaseRecyclerHolder, position: Int) {
                 val data = dataList[position]
                 val intent = Intent(Intent.ACTION_VIEW)
@@ -71,26 +81,40 @@ class DataListFragment(infoType: Int = GankDataType.ANDROID.ordinal) : Fragment(
         recyclerView.addItemDecoration(itemDecoration)
 
         refreshLayout.setOnRefreshListener {
-            page = 0
-            getData()
+            mPage = 1
+            getData(mPage++)
         }
 
-        getData(page++)
+        Log.i("DataList", "onViewCreated : $type")
+        getData(mPage++)
         refreshLayout.isRefreshing = true
     }
 
-    private fun getData(page: Int = 0) {
-        ApiServiceImpl.getDataByType(type, pageCount, page, object : Observer<DatasResponse> {
+    private fun getData(page: Int) {
+
+        Log.i("DataList", "getData  $page")
+
+        ApiServiceImpl.getDataByType(type, mPageCount, page, object : Observer<DatasResponse> {
             override fun onComplete() {
+                Log.v("getData", "onComplete")
                 refreshLayout.isRefreshing = false
+                adapter.showLoadMore()
             }
 
             override fun onError(e: Throwable) {
+                Log.v("getData", "onError")
                 refreshLayout.isRefreshing = false
+                adapter.showLoadMore()
             }
 
             override fun onNext(t: DatasResponse) {
+                Log.v("getData", "onNext")
                 refreshLayout.isRefreshing = false
+                adapter.showLoadMore()
+
+                if (page == 0 && dataList.isNotEmpty()) {
+                    dataList.clear()
+                }
 
                 dataList.addAll(t.results)
                 adapter.notifyDataSetChanged()
@@ -101,19 +125,17 @@ class DataListFragment(infoType: Int = GankDataType.ANDROID.ordinal) : Fragment(
         })
     }
 
-    private inner class DataAdapter(clickListener: RecyclerViewItemClickListener?)
-        : BaseRecyclerAdapter(clickListener) {
+    private inner class DataAdapter(dataList: List<DataInfo>, clickListener: RecyclerViewItemClickListener?)
+        : RefreshRecyclerAdapter<DataInfo>(dataList, clickListener) {
+        override fun createContentHolder(parent: ViewGroup?, viewType: Int): BaseRecyclerHolder =
+                ItemHolder(activity.layoutInflater.inflate(R.layout.item_daily_info_content, parent, false), itemClickListener)
+
         override fun onBindViewHolder(holder: BaseRecyclerHolder?, position: Int) {
+            super.onBindViewHolder(holder, position)
             if (holder is ItemHolder) {
                 holder.hideDivider = true
                 holder.update(dataList[position])
             }
         }
-
-        override fun createHolder(parent: ViewGroup?, viewType: Int): BaseRecyclerHolder =
-                ItemHolder(activity.layoutInflater.inflate(R.layout.item_daily_info_content, parent, false), itemClickListener)
-
-        override fun getItemCount(): Int = dataList.size
-
     }
 }

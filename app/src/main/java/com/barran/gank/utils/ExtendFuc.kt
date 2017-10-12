@@ -47,4 +47,7 @@ const val FORMAT_YMD_HM = "yyyy/MM/dd HH:mm"
 fun Long.dateFormat(format: String = FORMAT_DEFAULT): String =
         SimpleDateFormat(format, Locale.CHINA).format(Date(this))
 
+fun Date.dateFormat(format: String = FORMAT_DEFAULT): String =
+        SimpleDateFormat(format, Locale.CHINA).format(this)
+
 fun String.toTimemillis(format: String = FORMAT_YMD): Long = SimpleDateFormat(format, Locale.CHINA).parse(this).time
