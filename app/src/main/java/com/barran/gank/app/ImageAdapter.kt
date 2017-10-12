@@ -31,7 +31,7 @@ class ImageAdapter(private val context: Context, private val imageList: List<Str
     override fun onBindFeaturedViewHolder(holder: CustomRecyclerViewHolder, position: Int) {
         Picasso.with(context)
                 .load(imageList[position]).into(holder.image)
-        holder.title!!.text = imageList[position]
+//        holder.title!!.text = imageList[position]
     }
 
     override fun getFeaturedItemsCount(): Int {
@@ -39,21 +39,21 @@ class ImageAdapter(private val context: Context, private val imageList: List<Str
     }
 
     override fun onSmallItemResize(holder: CustomRecyclerViewHolder, position: Int, offset: Float) {
-        holder.title!!.alpha = offset / 100f
+//        holder.title!!.alpha = offset / 100f
     }
 
     override fun onBigItemResize(holder: CustomRecyclerViewHolder, position: Int, offset: Float) {
-        holder.title!!.alpha = offset / 100f
+//        holder.title!!.alpha = offset / 100f
     }
 
     class CustomRecyclerViewHolder(itemView: View, clickListener: RecyclerViewItemClickListener?) : BaseRecyclerHolder(itemView, clickListener) {
 
         internal var image: ImageView? = null
-        internal var title: TextView? = null
+//        internal var title: TextView? = null
 
         init {
             image = itemView.findViewById(R.id.item_image_icon) as ImageView
-            title = itemView.findViewById(R.id.item_image_title) as TextView
+//            title = itemView.findViewById(R.id.item_image_title) as TextView
         }
     }
 }

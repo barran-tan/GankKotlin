@@ -1,50 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.barran.gank.app.MainActivity">
+    android:orientation="vertical">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/activity_main_toolbar"
+        style="@style/ToolbarStyle"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/activity_main_drawer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/activity_main_toolbar"
-            style="@style/ToolbarStyle"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
-        <android.support.design.widget.TabLayout
-            android:id="@+id/activity_main_tab_layout"
+        <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:minHeight="20dp"
-            app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
-            app:tabIndicatorColor="@color/green"
-            app:tabMode="scrollable"
-            app:tabSelectedTextColor="@color/green"
-            app:tabTextColor="@color/gray" />
+            android:layout_height="match_parent">
 
-    </android.support.design.widget.AppBarLayout>
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/app_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/activity_main_tab_viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/activity_main_tab_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:minHeight="20dp"
+                    app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+                    app:tabIndicatorColor="@color/green"
+                    app:tabMode="scrollable"
+                    app:tabSelectedTextColor="@color/green"
+                    app:tabTextColor="@color/gray" />
+
+            </android.support.design.widget.AppBarLayout>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/activity_main_tab_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/activity_main_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_marginBottom="15dp"
-        android:layout_marginRight="15dp"
-        android:src="@mipmap/girl" />
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/activity_main_fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="15dp"
+                android:src="@mipmap/girl" />
 
-</android.support.design.widget.CoordinatorLayout>
+        </android.support.design.widget.CoordinatorLayout>
+
+        <!--app:itemIconTint="@color/menu_tint"-->
+        <android.support.design.widget.NavigationView
+            android:id="@+id/activity_main_navigation_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:fitsSystemWindows="true"
+            app:headerLayout="@layout/layout_navigation_header"
+            app:menu="@menu/menu_navigation" />
+
+    </android.support.v4.widget.DrawerLayout>
+
+</LinearLayout>

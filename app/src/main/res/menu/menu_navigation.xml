@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/group_function">
+        <item
+            android:id="@+id/menu_navigation_history"
+            android:icon="@mipmap/history_record"
+            android:title="@string/menu_history" />
+        <item
+            android:id="@+id/menu_navigation_favorite"
+            android:icon="@mipmap/favor"
+            android:title="@string/menu_favorite" />
+    </group>
+
+    <item
+        android:id="@+id/menu_navigation_about"
+        android:icon="@mipmap/about"
+        android:title="@string/menu_about" />
+
+</menu>

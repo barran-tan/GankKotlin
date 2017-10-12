@@ -9,7 +9,7 @@ import com.barran.gank.R
 
 
 /**
- * 封装显示上拉加载更多ui的adapter（BaseRecyclerAdapter：RecyclerView.Adapter）
+ * 封装显示上拉加载更多ui的adapter（:BaseRecyclerAdapter：RecyclerView.Adapter）
  *
  * Created by tanwei on 2017/10/12.
  */
@@ -79,7 +79,7 @@ abstract class RefreshRecyclerAdapter<T>(private val dataList: List<T>, itemClic
         }
     }
 
-    override fun getItemCount(): Int = dataList.size + 1
+    override fun getItemCount(): Int = if (dataList.isEmpty()) 0 else (dataList.size + 1)
 
     override fun getItemViewType(position: Int): Int {
         return if (position == dataList.size) TYPE_FOOTER

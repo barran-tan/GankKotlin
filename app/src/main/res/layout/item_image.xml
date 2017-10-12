@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop" />
 
-    <View
+    <!--<View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/shadow_inverse" />
@@ -26,5 +26,5 @@
         android:paddingRight="10dp"
         android:paddingTop="5dp"
         android:textColor="@android:color/white"
-        android:textSize="20sp" />
+        android:textSize="20sp" />-->
 </RelativeLayout>
