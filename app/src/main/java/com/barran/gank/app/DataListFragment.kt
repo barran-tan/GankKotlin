@@ -76,7 +76,7 @@ class DataListFragment(infoType: Int = GankDataType.ANDROID.ordinal) : Fragment(
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(activity)
-        val itemDecoration = VertivalItemDecoration()
+        val itemDecoration = VerticalItemDecoration()
         itemDecoration.setDividerHeight(resources.getDimensionPixelOffset(R.dimen.default_dimen_text))
         recyclerView.addItemDecoration(itemDecoration)
 

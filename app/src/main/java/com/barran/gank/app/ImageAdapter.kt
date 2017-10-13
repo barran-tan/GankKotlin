@@ -9,6 +9,7 @@ import android.widget.TextView
 import com.barran.gank.R
 import com.barran.gank.libs.recycler.BaseRecyclerHolder
 import com.barran.gank.libs.recycler.RecyclerViewItemClickListener
+import com.barran.gank.utils.load
 
 import com.squareup.picasso.Picasso
 
@@ -29,8 +30,7 @@ class ImageAdapter(private val context: Context, private val imageList: List<Str
     }
 
     override fun onBindFeaturedViewHolder(holder: CustomRecyclerViewHolder, position: Int) {
-        Picasso.with(context)
-                .load(imageList[position]).into(holder.image)
+        holder.image?.load(imageList[position])
 //        holder.title!!.text = imageList[position]
     }
 

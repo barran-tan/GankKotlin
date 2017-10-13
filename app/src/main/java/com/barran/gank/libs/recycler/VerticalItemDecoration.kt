@@ -13,7 +13,7 @@ import com.barran.gank.app.App
  *
  * Created by tanwei on 2017/10/11.
  */
-class VertivalItemDecoration : RecyclerView.ItemDecoration() {
+class VerticalItemDecoration : RecyclerView.ItemDecoration() {
 
     private var dividerHeight: Int
     private val dividerPaint: Paint = Paint()
@@ -26,22 +26,22 @@ class VertivalItemDecoration : RecyclerView.ItemDecoration() {
         dividerHeight = App.appContext.resources.getDimensionPixelOffset(R.dimen.default_dimen_divider)
     }
 
-    fun setDividerHeight(px: Int): VertivalItemDecoration {
+    fun setDividerHeight(px: Int): VerticalItemDecoration {
         dividerHeight = px
         return this
     }
 
-    fun setDividerColor(color: Int): VertivalItemDecoration {
+    fun setDividerColor(color: Int): VerticalItemDecoration {
         dividerPaint.color = color
         return this
     }
 
-    fun setDividerIncludePadding(isInclude: Boolean): VertivalItemDecoration {
+    fun setDividerIncludePadding(isInclude: Boolean): VerticalItemDecoration {
         includePadding = isInclude
         return this
     }
 
-    fun showHeaderDivider(showHeaderDivider: Boolean): VertivalItemDecoration {
+    fun showHeaderDivider(showHeaderDivider: Boolean): VerticalItemDecoration {
         this.showHeaderDivider = showHeaderDivider
         return this
     }

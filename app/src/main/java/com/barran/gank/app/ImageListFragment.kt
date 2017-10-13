@@ -46,7 +46,7 @@ class ImageListFragment : Fragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var recyclerView = view?.findViewById(R.id.fragment_image_list_recycler_view) as FeaturedRecyclerView
+        val recyclerView = view?.findViewById(R.id.fragment_image_list_recycler_view) as FeaturedRecyclerView
         recyclerView.layoutManager = FeatureLinearLayoutManager(activity)
         adapter = ImageAdapter(activity, images, object : RecyclerViewItemClickListener {
             override fun onItemClick(holder: BaseRecyclerHolder, position: Int) {

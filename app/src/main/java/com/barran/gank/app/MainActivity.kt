@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.widget.Toolbar
+import android.util.Log
 import android.util.SparseArray
 import android.view.Gravity
 import android.view.Menu
@@ -24,9 +25,9 @@ import com.barran.gank.service.beans.GankDataType
  */
 class MainActivity : AppCompatActivity() {
 
-    lateinit var fragments: SparseArray<Fragment>
+    private lateinit var fragments: SparseArray<Fragment>
 
-    lateinit var drawerLayout: DrawerLayout
+    private lateinit var drawerLayout: DrawerLayout
 
     val typeArray = arrayOf(GankDataType.ANDROID.ordinal, GankDataType.IOS.ordinal, GankDataType.PASTTIME.ordinal
             , GankDataType.EXPANDINFOMATION.ordinal, GankDataType.FRONTEND.ordinal, GankDataType.RECOMMEND.ordinal)
@@ -112,7 +113,7 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.menu_navigation_favorite -> Toast.makeText(this, "favorite", Toast.LENGTH_SHORT).show()
 
-                R.id.menu_navigation_about -> Toast.makeText(this, "about", Toast.LENGTH_SHORT).show()
+                R.id.menu_navigation_about -> startActivity(Intent(this, AboutActivity::class.java))
 
             }
 

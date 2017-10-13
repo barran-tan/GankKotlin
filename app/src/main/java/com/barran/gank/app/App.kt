@@ -5,7 +5,7 @@ import android.content.Context
 import com.barran.gank.libs.retrofit.RetrofitClient
 
 /**
- * app extry
+ * app entry
  *
  * Created by tanwei on 2017/9/26.
  */

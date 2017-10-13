@@ -23,7 +23,7 @@ import com.barran.gank.service.beans.DataInfo
 import com.barran.gank.service.beans.GankDataType
 import com.barran.gank.utils.dateFormat
 import com.barran.gank.utils.load
-import com.barran.gank.utils.toTimemillis
+import com.barran.gank.utils.toTimeMillis
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import java.util.*
@@ -59,7 +59,7 @@ class DailyContentFragment : Fragment() {
             time = arguments.getString(EXTRA_DATE)
         }
         if (time != null) {
-            date.timeInMillis = time.toTimemillis()
+            date.timeInMillis = time.toTimeMillis()
         } else {
             date.timeInMillis = System.currentTimeMillis()
         }

@@ -50,4 +50,4 @@ fun Long.dateFormat(format: String = FORMAT_DEFAULT): String =
 fun Date.dateFormat(format: String = FORMAT_DEFAULT): String =
         SimpleDateFormat(format, Locale.CHINA).format(this)
 
-fun String.toTimemillis(format: String = FORMAT_YMD): Long = SimpleDateFormat(format, Locale.CHINA).parse(this).time
+fun String.toTimeMillis(format: String = FORMAT_YMD): Long = SimpleDateFormat(format, Locale.CHINA).parse(this).time

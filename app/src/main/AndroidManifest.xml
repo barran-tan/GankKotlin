@@ -17,6 +17,7 @@
         <activity android:name=".app.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -29,6 +30,9 @@
         <activity
             android:name=".app.HistoryDatesActivity"
             android:label="@string/history" />
+        <activity
+            android:name=".app.AboutActivity"
+            android:label="@string/menu_about" />
     </application>
 
 </manifest>

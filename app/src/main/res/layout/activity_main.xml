@@ -53,7 +53,8 @@
                 android:layout_gravity="end|bottom"
                 android:layout_marginBottom="15dp"
                 android:layout_marginRight="15dp"
-                android:src="@mipmap/girl" />
+                android:src="@mipmap/girl"
+                app:borderWidth="0dp" />
 
         </android.support.design.widget.CoordinatorLayout>
 
