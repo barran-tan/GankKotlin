@@ -17,10 +17,10 @@ import com.barran.gank.R
 import com.barran.gank.libs.recycler.BaseRecyclerAdapter
 import com.barran.gank.libs.recycler.BaseRecyclerHolder
 import com.barran.gank.libs.recycler.RecyclerViewItemClickListener
-import com.barran.gank.service.ApiServiceImpl
-import com.barran.gank.service.beans.DailyDataResponse
-import com.barran.gank.service.beans.DataInfo
-import com.barran.gank.service.beans.GankDataType
+import com.barran.gank.api.ApiServiceImpl
+import com.barran.gank.api.beans.DailyDataResponse
+import com.barran.gank.api.beans.DataInfo
+import com.barran.gank.api.beans.GankDataType
 import com.barran.gank.utils.dateFormat
 import com.barran.gank.utils.load
 import com.barran.gank.utils.toTimeMillis

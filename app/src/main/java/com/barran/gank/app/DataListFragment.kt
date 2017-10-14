@@ -14,10 +14,10 @@ import android.view.ViewGroup
 
 import com.barran.gank.R
 import com.barran.gank.libs.recycler.*
-import com.barran.gank.service.ApiServiceImpl
-import com.barran.gank.service.beans.DataInfo
-import com.barran.gank.service.beans.DatasResponse
-import com.barran.gank.service.beans.GankDataType
+import com.barran.gank.api.ApiServiceImpl
+import com.barran.gank.api.beans.DataInfo
+import com.barran.gank.api.beans.DatasResponse
+import com.barran.gank.api.beans.GankDataType
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import java.util.ArrayList

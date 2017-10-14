@@ -1,9 +1,9 @@
-package com.barran.gank.service
+package com.barran.gank.api
 
 import com.barran.gank.libs.retrofit.RetrofitClient
-import com.barran.gank.service.beans.DailyDataResponse
-import com.barran.gank.service.beans.DatasResponse
-import com.barran.gank.service.beans.HistoryDates
+import com.barran.gank.api.beans.DailyDataResponse
+import com.barran.gank.api.beans.DatasResponse
+import com.barran.gank.api.beans.HistoryDates
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

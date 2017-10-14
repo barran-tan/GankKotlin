@@ -11,9 +11,9 @@ import com.barran.gank.libs.recycler.BaseRecyclerHolder
 import com.barran.gank.libs.recycler.RecyclerViewItemClickListener
 import com.barran.gank.libs.recycler.RefreshLoadMoreListener
 import com.barran.gank.libs.recycler.RefreshScrollListener
-import com.barran.gank.service.ApiServiceImpl
-import com.barran.gank.service.beans.DatasResponse
-import com.barran.gank.service.beans.GankDataType
+import com.barran.gank.api.ApiServiceImpl
+import com.barran.gank.api.beans.DatasResponse
+import com.barran.gank.api.beans.GankDataType
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import shivam.developer.featuredrecyclerview.FeatureLinearLayoutManager

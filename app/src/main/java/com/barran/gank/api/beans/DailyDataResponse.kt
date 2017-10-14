@@ -1,4 +1,4 @@
-package com.barran.gank.service.beans
+package com.barran.gank.api.beans
 
 
 /**

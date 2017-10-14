@@ -10,7 +10,6 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.widget.Toolbar
-import android.util.Log
 import android.util.SparseArray
 import android.view.Gravity
 import android.view.Menu
@@ -18,7 +17,7 @@ import android.view.MenuItem
 import android.widget.Toast
 
 import com.barran.gank.R
-import com.barran.gank.service.beans.GankDataType
+import com.barran.gank.api.beans.GankDataType
 
 /**
  * @author tanwei

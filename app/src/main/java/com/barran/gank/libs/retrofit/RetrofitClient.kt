@@ -1,15 +1,11 @@
 package com.barran.gank.libs.retrofit
 
 import com.barran.gank.app.App
-import com.barran.gank.service.APIService
+import com.barran.gank.api.APIService
 import com.google.gson.GsonBuilder
-import io.reactivex.Observer
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import okhttp3.Cache
 import okhttp3.ConnectionPool
 import okhttp3.OkHttpClient
-import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
