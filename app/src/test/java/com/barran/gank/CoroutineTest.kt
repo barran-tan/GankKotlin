@@ -3,7 +3,11 @@ package com.barran.gank
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.delay
 import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.experimental.runBlocking
 import org.junit.Test
+import java.io.File
+import java.io.FileOutputStream
+import java.util.*
 import java.util.concurrent.Executors
 import kotlin.coroutines.experimental.*
 
@@ -14,17 +18,34 @@ import kotlin.coroutines.experimental.*
  */
 class CoroutineTest {
 
+    private val logs = ArrayList<String>()
+
     @Test
     fun test(){
+//        logs.clear()
         launch(CommonPool) {
             delay(1000L)
             log("world")
         }
         log("hello")
+
+        Thread.sleep(2000L)// TODO 添加sleep
+    }
+
+    @Test
+    fun testMain() {
+        runBlocking {
+            launch(CommonPool) {
+                delay(1000L)
+                log("world")
+            }
+            log("hello")
+        }
     }
 
     @Test
     fun testApi() {
+//        logs.clear()
         log("before coroutine")
         asyncCalculateMD5("test.txt") {
             log("in coroutine, before suspend")
@@ -51,6 +72,7 @@ class CoroutineTest {
 
     @Test
     fun testApiAsync() {
+//        logs.clear()
         log("before coroutine")
         val executor = Executors.newSingleThreadExecutor {
             Thread(it, "scheduler")
@@ -69,6 +91,7 @@ class CoroutineTest {
             executor.shutdown()
         }
         log("after coroutine")
+        Thread.sleep(3000)// TODO 添加sleep
 
         // log
 //        before coroutine
@@ -78,6 +101,7 @@ class CoroutineTest {
         // 下面这句log有时打印不出来
 //        calculateMD5 of test.txt @scheduler
         // TODO 其他子线程的log也没看到
+        // 通过测试，发现是由于主线程先于子线程结束了引起的，去掉子线程的sleep或者给主线程添加sleep都可以看到完整log
     }
 
     private fun asyncCalculateMD5(filePath: String, block: suspend () -> Unit) {
@@ -105,9 +129,21 @@ class CoroutineTest {
     private fun calculateMD5(filePath: String): String {
         log("calculateMD5 of $filePath @${Thread.currentThread().name}")
         // 模拟耗时操作
-        Thread.sleep(1000)
+        Thread.sleep(1000)// TODO 去掉sleep
         return System.currentTimeMillis().toString()
     }
-}
 
-fun log(log: String) = println(log)
+    fun log(log: String) {
+        println(log)
+//        logs.add(log)
+//        println(logs)
+//    val file = File("E:\\demo\\github\\log.txt")
+//    if(file.exists()){
+//        val stream = FileOutputStream(file)
+//        stream.write(log.toByteArray())
+//        stream.write("\n".toByteArray())
+//        stream.flush()
+//    }
+    }
+
+}
