@@ -28,3 +28,7 @@
 -keep class retrofit2.** { *; }
 -keepattributes Signature-keepattributes Exceptions
 -dontwarn com.squareup.okhttp.**
+
+-keepclassmembernames class kotlinx.** {
+    volatile <fields>;
+}

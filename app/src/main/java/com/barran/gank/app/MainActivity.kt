@@ -115,6 +115,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.menu_navigation_about -> startActivity(Intent(this, AboutActivity::class.java))
 
             }
+            drawerLayout.closeDrawer(Gravity.START)
 
             false
         }
