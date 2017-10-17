@@ -33,6 +33,9 @@
         <activity
             android:name=".app.AboutActivity"
             android:label="@string/menu_about" />
+        <activity
+            android:name=".app.ViewedInfoListActivity"
+            android:label="@string/menu_history" />
     </application>
 
 </manifest>

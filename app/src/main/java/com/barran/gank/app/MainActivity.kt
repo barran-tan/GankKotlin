@@ -108,7 +108,7 @@ class MainActivity : AppCompatActivity() {
         navigationView.setNavigationItemSelectedListener { item ->
 
             when (item.itemId) {
-                R.id.menu_navigation_history -> Toast.makeText(this, "history", Toast.LENGTH_SHORT).show()
+                R.id.menu_navigation_history -> startActivity(Intent(this, ViewedInfoListActivity::class.java))
 
                 R.id.menu_navigation_favorite -> Toast.makeText(this, "favorite", Toast.LENGTH_SHORT).show()
 

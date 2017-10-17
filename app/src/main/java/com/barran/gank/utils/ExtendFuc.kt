@@ -42,7 +42,7 @@ fun String.spannable(vararg spannable: SpannableData): SpannableString {
 
 const val FORMAT_DEFAULT = "yyyy/MM/dd"
 const val FORMAT_YMD = "yyyy-MM-dd"
-const val FORMAT_YMD_HM = "yyyy/MM/dd HH:mm"
+const val FORMAT_YMD_HMS = "yyyy/MM/dd HH:mm:ss"
 
 fun Long.dateFormat(format: String = FORMAT_DEFAULT): String =
         SimpleDateFormat(format, Locale.CHINA).format(Date(this))

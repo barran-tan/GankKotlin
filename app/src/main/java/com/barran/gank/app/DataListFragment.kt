@@ -18,6 +18,7 @@ import com.barran.gank.api.ApiServiceImpl
 import com.barran.gank.api.beans.DataInfo
 import com.barran.gank.api.beans.DatasResponse
 import com.barran.gank.api.beans.GankDataType
+import com.barran.gank.libs.greendao.DataCache
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import java.util.ArrayList
@@ -68,6 +69,9 @@ class DataListFragment(infoType: Int = GankDataType.ANDROID.ordinal) : Fragment(
         adapter = DataAdapter(dataList, object : RecyclerViewItemClickListener {
             override fun onItemClick(holder: BaseRecyclerHolder, position: Int) {
                 val data = dataList[position]
+                // add history
+                DataCache.cache.insertHistoryData(data)
+
                 val intent = Intent(Intent.ACTION_VIEW)
                 intent.data = Uri.parse(data.url)
                 startActivity(intent)

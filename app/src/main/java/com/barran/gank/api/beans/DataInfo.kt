@@ -1,8 +1,8 @@
 package com.barran.gank.api.beans
 
-//import io.realm.RealmObject
-//import io.realm.annotations.PrimaryKey
+import com.barran.gank.libs.greendao.DataInfoEntity
 import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * data from gank.io
@@ -22,8 +22,23 @@ import java.util.*
 // "who": "YUCHUAN"
 class DataInfo {
 
+    constructor()
+
+    constructor(data: DataInfoEntity) {
+        _id = data.infoId
+        type = data.type
+        createAt = Date(data.createTime)
+        publishedAt = Date(data.publishTime)
+        desc = data.desc
+        url = data.linkUrl
+        who = data.author
+        images = if(data.images != null) arrayOf(data.images) else null
+
+        read = data.isRead
+    }
+
     // server field
-    var id: String? = null
+    var _id: String? = null
 
     var type: String = "Android"
 

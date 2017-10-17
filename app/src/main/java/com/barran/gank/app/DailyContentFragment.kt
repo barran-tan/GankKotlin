@@ -21,6 +21,7 @@ import com.barran.gank.api.ApiServiceImpl
 import com.barran.gank.api.beans.DailyDataResponse
 import com.barran.gank.api.beans.DataInfo
 import com.barran.gank.api.beans.GankDataType
+import com.barran.gank.libs.greendao.DataCache
 import com.barran.gank.utils.dateFormat
 import com.barran.gank.utils.load
 import com.barran.gank.utils.toTimeMillis
@@ -83,6 +84,10 @@ class DailyContentFragment : Fragment() {
         adapter = Adapter(object : RecyclerViewItemClickListener {
             override fun onItemClick(holder: BaseRecyclerHolder, position: Int) {
                 val data = contentList[position]
+
+                // add history
+                DataCache.cache.insertHistoryData(data)
+
                 if (data.url != null) {
                     val intent = Intent(Intent.ACTION_VIEW)
                     intent.data = Uri.parse(data.url)
