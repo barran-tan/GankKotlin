@@ -22,3 +22,11 @@
     展示内容的html界面，可以用浏览器打开以及收藏文章
 
 <img width="384" height="640" src="https://github.com/barran-tan/GankKotlin/raw/master/images/html.png"/>
+
+    有文章的日期列表
+    
+<img width="384" height="640" src="https://github.com/barran-tan/GankKotlin/raw/master/images/dates.png"/> 
+
+    大图浏览界面，支持下载到sd卡
+    
+<img width="384" height="640" src="https://github.com/barran-tan/GankKotlin/raw/master/images/big_image.png"/> 
