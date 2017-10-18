@@ -9,7 +9,7 @@ import java.util.concurrent.Executors
 import kotlin.coroutines.experimental.*
 
 /**
- * 携程测试代码
+ * 协程测试代码
  *
  * Created by tanwei on 2017/10/14.
  */
@@ -97,7 +97,7 @@ class CoroutineTest {
 //                it::join // 不能使用这种用法，因为it.join是调用suspend方法
             }
         }
-        // log  携程开销很小，会管理并复用线程，如果是创建线程则会出错：OutOfMemoryError
+        // log  协程开销很小，会管理并复用线程，如果是创建线程则会出错：OutOfMemoryError
 //        job 54180 @thread(ForkJoinPool.commonPool-worker-1)
 //        job 81191 @thread(ForkJoinPool.commonPool-worker-3)
 //        job 81192 @thread(ForkJoinPool.commonPool-worker-2)

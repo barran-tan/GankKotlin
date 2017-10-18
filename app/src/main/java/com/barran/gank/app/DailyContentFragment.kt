@@ -1,5 +1,6 @@
 package com.barran.gank.app
 
+import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -26,6 +27,7 @@ import com.barran.gank.utils.toTimeMillis
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * 展示每日资讯
@@ -120,7 +122,16 @@ class DailyContentFragment : Fragment() {
                 Log.v("loadDailyData", "onNext size:${t.results.size}")
                 t.results.iterator().forEach {
                     if (GankDataType.WELFARE.typeName == it.key) {
-                        image.load(it.value[0].url)
+                        val url = it.value[0].url
+                        image.load(url)
+
+                        image.setOnClickListener({
+                            val intent = Intent(activity, BigImageActivity::class.java)
+                            val images = ArrayList<String>(1)
+                            images.add(url!!)
+                            intent.putStringArrayListExtra(EXTRA_IMAGE_LIST, images)
+                            startActivity(intent)
+                        })
                     } else {
                         val group = DataInfo()
                         group.type = it.key
