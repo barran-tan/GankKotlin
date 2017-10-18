@@ -34,9 +34,7 @@ class ImageAdapter(private val context: Context, private val imageList: List<Str
 //        holder.title!!.text = imageList[position]
     }
 
-    override fun getFeaturedItemsCount(): Int {
-        return imageList.size
-    }
+    override fun getFeaturedItemsCount(): Int = imageList.size
 
     override fun onSmallItemResize(holder: CustomRecyclerViewHolder, position: Int, offset: Float) {
 //        holder.title!!.alpha = offset / 100f

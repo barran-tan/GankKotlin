@@ -1,7 +1,6 @@
 package com.barran.gank.app
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.design.widget.TabLayout
@@ -9,13 +8,12 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v4.widget.DrawerLayout
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.util.SparseArray
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
-
 import com.barran.gank.R
 import com.barran.gank.api.beans.GankDataType
 
@@ -110,7 +108,7 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.menu_navigation_history -> startActivity(Intent(this, ViewedInfoListActivity::class.java))
 
-                R.id.menu_navigation_favorite -> Toast.makeText(this, "favorite", Toast.LENGTH_SHORT).show()
+                R.id.menu_navigation_favorite -> startActivity(Intent(this, FavoriteListActivity::class.java))
 
                 R.id.menu_navigation_about -> startActivity(Intent(this, AboutActivity::class.java))
 

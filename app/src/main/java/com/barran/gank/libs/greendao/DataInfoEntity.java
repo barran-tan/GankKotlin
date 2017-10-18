@@ -27,11 +27,12 @@ public class DataInfoEntity {
     
     // custom field
     private boolean read;
+    private boolean favored;
 
-    @Generated(hash = 1126986289)
+    @Generated(hash = 1517352497)
     public DataInfoEntity(Long id, String infoId, String type, long createTime,
             long publishTime, String desc, String linkUrl, String author,
-            String image, boolean read) {
+            String image, boolean read, boolean favored) {
         this.id = id;
         this.infoId = infoId;
         this.type = type;
@@ -42,6 +43,7 @@ public class DataInfoEntity {
         this.author = author;
         this.image = image;
         this.read = read;
+        this.favored = favored;
     }
 
     @Generated(hash = 1921053336)
@@ -134,5 +136,13 @@ public class DataInfoEntity {
 
     public boolean getRead() {
         return this.read;
+    }
+
+    public void setFavored(boolean favored) {
+        this.favored = favored;
+    }
+
+    public boolean getFavored() {
+        return this.favored;
     }
 }

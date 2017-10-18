@@ -32,6 +32,7 @@ public class DataInfoEntityDao extends AbstractDao<DataInfoEntity, Long> {
         public final static Property Author = new Property(7, String.class, "author", false, "AUTHOR");
         public final static Property Image = new Property(8, String.class, "image", false, "IMAGE");
         public final static Property Read = new Property(9, boolean.class, "read", false, "READ");
+        public final static Property Favored = new Property(10, boolean.class, "favored", false, "FAVORED");
     }
 
 
@@ -56,7 +57,8 @@ public class DataInfoEntityDao extends AbstractDao<DataInfoEntity, Long> {
                 "\"LINK_URL\" TEXT," + // 6: linkUrl
                 "\"AUTHOR\" TEXT," + // 7: author
                 "\"IMAGE\" TEXT," + // 8: image
-                "\"READ\" INTEGER NOT NULL );"); // 9: read
+                "\"READ\" INTEGER NOT NULL ," + // 9: read
+                "\"FAVORED\" INTEGER NOT NULL );"); // 10: favored
     }
 
     /** Drops the underlying database table. */
@@ -106,6 +108,7 @@ public class DataInfoEntityDao extends AbstractDao<DataInfoEntity, Long> {
             stmt.bindString(9, image);
         }
         stmt.bindLong(10, entity.getRead() ? 1L: 0L);
+        stmt.bindLong(11, entity.getFavored() ? 1L: 0L);
     }
 
     @Override
@@ -149,6 +152,7 @@ public class DataInfoEntityDao extends AbstractDao<DataInfoEntity, Long> {
             stmt.bindString(9, image);
         }
         stmt.bindLong(10, entity.getRead() ? 1L: 0L);
+        stmt.bindLong(11, entity.getFavored() ? 1L: 0L);
     }
 
     @Override
@@ -168,7 +172,8 @@ public class DataInfoEntityDao extends AbstractDao<DataInfoEntity, Long> {
             cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // linkUrl
             cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // author
             cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // image
-            cursor.getShort(offset + 9) != 0 // read
+            cursor.getShort(offset + 9) != 0, // read
+            cursor.getShort(offset + 10) != 0 // favored
         );
         return entity;
     }
@@ -185,6 +190,7 @@ public class DataInfoEntityDao extends AbstractDao<DataInfoEntity, Long> {
         entity.setAuthor(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
         entity.setImage(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
         entity.setRead(cursor.getShort(offset + 9) != 0);
+        entity.setFavored(cursor.getShort(offset + 10) != 0);
      }
     
     @Override

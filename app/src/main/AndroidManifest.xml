@@ -36,6 +36,10 @@
         <activity
             android:name=".app.ViewedInfoListActivity"
             android:label="@string/menu_history" />
+        <activity
+            android:name=".app.FavoriteListActivity"
+            android:label="@string/menu_favorite" />
+        <activity android:name=".app.HtmlActivity"/>
     </application>
 
 </manifest>

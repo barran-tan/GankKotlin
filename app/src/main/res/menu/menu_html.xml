@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/menu_share"
-        android:icon="@mipmap/share"
+        android:id="@+id/menu_favorite"
+        android:icon="@mipmap/favor"
         android:title=""
         app:showAsAction="ifRoom" />
 

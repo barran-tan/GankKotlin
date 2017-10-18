@@ -35,6 +35,7 @@ class DataInfo {
         images = if(data.images != null) arrayOf(data.images) else null
 
         read = data.isRead
+        favored = data.favored
     }
 
     // server field
@@ -58,6 +59,7 @@ class DataInfo {
 
     // custom field
     var read = false
+    var favored = false
 }
 
 enum class GankDataType(val typeName: String) {

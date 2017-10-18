@@ -1,19 +1,21 @@
 package com.barran.gank.app
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import android.view.ViewGroup
-
 import com.barran.gank.R
 import com.barran.gank.api.beans.DataInfo
 import com.barran.gank.libs.greendao.DataCache
-import com.barran.gank.libs.recycler.*
+import com.barran.gank.libs.recycler.BaseRecyclerAdapter
+import com.barran.gank.libs.recycler.BaseRecyclerHolder
+import com.barran.gank.libs.recycler.RecyclerViewItemClickListener
+import com.barran.gank.libs.recycler.VerticalItemDecoration
 
-class ViewedInfoListActivity : AppCompatActivity() {
+class FavoriteListActivity : AppCompatActivity() {
 
     private lateinit var dataList: List<DataInfo>
 
@@ -23,14 +25,14 @@ class ViewedInfoListActivity : AppCompatActivity() {
 
         setSupportActionBar(findViewById(R.id.activity_viewed_info_list_toolbar) as Toolbar)
 
-        dataList = DataCache.cache.getHistoryDataList()
+        dataList = DataCache.cache.getFavoriteDataList()
 
         val recyclerView = findViewById(R.id.fragment_viewed_info_list_recycler_view) as RecyclerView
 
         val adapter = DataAdapter(object : RecyclerViewItemClickListener {
             override fun onItemClick(holder: BaseRecyclerHolder, position: Int) {
                 val data = dataList[position]
-                viewInfo(this@ViewedInfoListActivity, data)
+                viewInfo(this@FavoriteListActivity, data)
             }
         })
 

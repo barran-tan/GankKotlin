@@ -1,8 +1,6 @@
 package com.barran.gank.app
 
-import android.content.Intent
 import android.graphics.Rect
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -89,9 +87,7 @@ class DailyContentFragment : Fragment() {
                 DataCache.cache.insertHistoryData(data)
 
                 if (data.url != null) {
-                    val intent = Intent(Intent.ACTION_VIEW)
-                    intent.data = Uri.parse(data.url)
-                    startActivity(intent)
+                    viewInfo(activity, data)
                 }
             }
         })
