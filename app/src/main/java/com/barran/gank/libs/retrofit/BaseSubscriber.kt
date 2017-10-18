@@ -5,6 +5,7 @@ import android.util.Log
 import android.widget.Toast
 
 import com.barran.gank.utils.NetUtils
+import com.barran.gank.utils.toast
 
 import io.reactivex.Observer
 import io.reactivex.annotations.NonNull
@@ -25,7 +26,7 @@ abstract class BaseSubscriber : Observer<ResponseBody> {
 
     override fun onComplete() {
         Log.i(TAG, "onCompleted")
-        Toast.makeText(context, "http is Complete", Toast.LENGTH_SHORT).show()
+        "http is Complete".toast()
         // todo some common as dismiss loadding
 
     }
@@ -36,7 +37,7 @@ abstract class BaseSubscriber : Observer<ResponseBody> {
 
         // must to call onCompleted
         if (!NetUtils.isNetworkAvailable) {
-            Toast.makeText(context, "无网络，读取缓存数据", Toast.LENGTH_SHORT).show()
+            "无网络，读取缓存数据".toast()
             onComplete()
         }
     }

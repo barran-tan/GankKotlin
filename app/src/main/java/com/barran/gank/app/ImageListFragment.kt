@@ -1,5 +1,6 @@
 package com.barran.gank.app
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -30,8 +31,6 @@ class ImageListFragment : Fragment() {
         val pageCount = 10
     }
 
-    var imageClickListener: OnImageClick? = null
-
     private lateinit var adapter: ImageAdapter
 
     private val images = ArrayList<String>()
@@ -50,9 +49,11 @@ class ImageListFragment : Fragment() {
         recyclerView.layoutManager = FeatureLinearLayoutManager(activity)
         adapter = ImageAdapter(activity, images, object : RecyclerViewItemClickListener {
             override fun onItemClick(holder: BaseRecyclerHolder, position: Int) {
-                if (imageClickListener != null) {
-                    imageClickListener!!.onImageClick(images[position])
-                }
+
+                val intent = Intent(activity, BigImageActivity::class.java)
+                intent.putStringArrayListExtra(EXTRA_IMAGE_LIST, images)
+                intent.putExtra(EXTRA_INDEX, position)
+                startActivity(intent)
             }
         })
         recyclerView.adapter = adapter
@@ -70,10 +71,6 @@ class ImageListFragment : Fragment() {
         }))
 
         getImages(mPage++)
-    }
-
-    private fun loadImagesFromLocal() {
-
     }
 
     private fun getImages(page: Int = 0) {
@@ -104,9 +101,5 @@ class ImageListFragment : Fragment() {
                 Log.v("getImages", "onSubscribe")
             }
         })
-    }
-
-    interface OnImageClick {
-        fun onImageClick(url: String)
     }
 }

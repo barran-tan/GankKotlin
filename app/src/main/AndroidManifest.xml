@@ -39,7 +39,8 @@
         <activity
             android:name=".app.FavoriteListActivity"
             android:label="@string/menu_favorite" />
-        <activity android:name=".app.HtmlActivity"/>
+        <activity android:name=".app.HtmlActivity" />
+        <activity android:name=".app.BigImageActivity"/>
     </application>
 
 </manifest>

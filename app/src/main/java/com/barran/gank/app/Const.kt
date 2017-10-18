@@ -15,7 +15,11 @@ const val CONFIG_KEY_LAST_REQUEST_HISTORY_TIME = "last_request_history_time"
 // 重新请求历史间隔：3天
 const val CONFIG_VALUE_REQUEST_HISTORY_INTERVAL = 3 * 24 * 60 * 60 * 1000L
 
+const val IMAGE_PATH = "gank.images"
+
 const val EXTRA_URL = "url"
+const val EXTRA_IMAGE_LIST = "image_list"
+const val EXTRA_INDEX = "index"
 
 fun viewInfo(activity: Activity, data: DataInfo) {
     if (GankDataType.PASTTIME.typeName == data.type) {

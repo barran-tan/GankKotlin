@@ -77,4 +77,7 @@ dependencies {
 
     // kotlin coroutine
     compile 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.19.1'
+
+    // photoview
+    compile 'com.github.chrisbanes:PhotoView:2.1.3'
 }
