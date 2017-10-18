@@ -8,9 +8,9 @@
     <string name="menu_favorite">收藏文章</string>
     <string name="menu_about">关于项目</string>
     <string name="text_realized_functions_title">已实现功能</string>
-    <string name="text_realized_functions_list">浏览分类文章，图片列表，查看有发布文章的日期列表，查看某一天的文章，浏览文章历史列表</string>
+    <string name="text_realized_functions_list">浏览分类文章，图片列表，查看有发布文章的日期列表，查看某一天的文章，历史浏览文章列表，收藏文章及列表</string>
     <string name="text_functions_todo_title">待实现功能</string>
-    <string name="text_functions_todo_list">数据本地缓存，收藏列表，已读和未读的ui逻辑，大图浏览，代码整理等</string>
+    <string name="text_functions_todo_list">已读和未读的ui逻辑，大图浏览以及图片下载，代码整理等</string>
     <string name="text_libraries_title">涉及到的开源库</string>
     <string name="text_libraries_list">Retrofit2(okhttp，gson，)，RxJava2，Picasso，design库，constraint-layout，以及2个ui库(TimeLineItemDecoration，featuredrecyclerview)，greendao</string>
     <string name="text_github_title">github地址</string>

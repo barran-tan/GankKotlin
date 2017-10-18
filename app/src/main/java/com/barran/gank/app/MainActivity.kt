@@ -105,6 +105,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.activity_main_navigation_view) as NavigationView
         navigationView.setNavigationItemSelectedListener { item ->
 
+            drawerLayout.closeDrawer(Gravity.START, false)
             when (item.itemId) {
                 R.id.menu_navigation_history -> startActivity(Intent(this, ViewedInfoListActivity::class.java))
 
@@ -113,7 +114,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.menu_navigation_about -> startActivity(Intent(this, AboutActivity::class.java))
 
             }
-            drawerLayout.closeDrawer(Gravity.START)
 
             false
         }
