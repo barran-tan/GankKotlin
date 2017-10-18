@@ -12,7 +12,7 @@
     <string name="text_functions_todo_title">待实现功能</string>
     <string name="text_functions_todo_list">已读和未读的ui逻辑，代码整理等</string>
     <string name="text_libraries_title">涉及到的开源库</string>
-    <string name="text_libraries_list">Retrofit2(okhttp，gson，)，RxJava2，Picasso，design库，constraint-layout，以及2个ui库(TimeLineItemDecoration，featuredrecyclerview)，greendao</string>
+    <string name="text_libraries_list">Retrofit2(okhttp，gson，)，RxJava2，Picasso，design库，constraint-layout，以及2个ui库(TimeLineItemDecoration，featuredrecyclerview)，greendao，PhotoView</string>
     <string name="text_github_title">github地址</string>
     <string name="text_github_url">https://github.com/barran-tan/GankKotlin</string>
     <string name="text_gank_api_title">关于api</string>
