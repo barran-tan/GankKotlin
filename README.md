@@ -1,5 +1,5 @@
 # GankKotlin
-使用kotlin开发的展示gank api数据的app
+使用kotlin开发的展示 [干货集中营](http://gank.io)数据的app
 
 ---
 
