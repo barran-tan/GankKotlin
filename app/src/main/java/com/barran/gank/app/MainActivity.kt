@@ -26,8 +26,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var drawerLayout: DrawerLayout
 
-    val typeArray = arrayOf(GankDataType.ANDROID.ordinal, GankDataType.IOS.ordinal, GankDataType.PASTTIME.ordinal
-            , GankDataType.EXPANDINFOMATION.ordinal, GankDataType.FRONTEND.ordinal, GankDataType.RECOMMEND.ordinal)
+    val typeArray = arrayOf(GankDataType.ANDROID.ordinal, GankDataType.IOS.ordinal, GankDataType.PAST_TIME.ordinal
+            , GankDataType.EXPAND_INFORMATION.ordinal, GankDataType.FRONTEND.ordinal, GankDataType.RECOMMEND.ordinal)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,16 +74,21 @@ class MainActivity : AppCompatActivity() {
                 if (fragments.get(position) != null) {
                     fragment = fragments.get(position)
                 } else {
-                    fragment =
+                    val infoType =
                             when (typeArray[position]) {
-                                GankDataType.ANDROID.ordinal -> DataListFragment(typeArray[position])
-                                GankDataType.IOS.ordinal -> DataListFragment(typeArray[position])
-                                GankDataType.PASTTIME.ordinal -> DataListFragment(typeArray[position])
-                                GankDataType.EXPANDINFOMATION.ordinal -> DataListFragment(typeArray[position])
-                                GankDataType.FRONTEND.ordinal -> DataListFragment(typeArray[position])
-                                GankDataType.RECOMMEND.ordinal -> DataListFragment(typeArray[position])
-                                else -> DataListFragment(GankDataType.ANDROID.ordinal)
+                                GankDataType.ANDROID.ordinal -> GankDataType.ANDROID.ordinal
+                                GankDataType.IOS.ordinal -> GankDataType.IOS.ordinal
+                                GankDataType.PAST_TIME.ordinal -> GankDataType.PAST_TIME.ordinal
+                                GankDataType.EXPAND_INFORMATION.ordinal -> GankDataType.EXPAND_INFORMATION.ordinal
+                                GankDataType.FRONTEND.ordinal -> GankDataType.FRONTEND.ordinal
+                                GankDataType.RECOMMEND.ordinal -> GankDataType.RECOMMEND.ordinal
+                                else -> GankDataType.ANDROID.ordinal
                             }
+
+                    fragment = DataListFragment()
+                    val bundle = Bundle()
+                    bundle.putInt(EXTRA_INFO_TYPE, infoType)
+                    fragment.arguments = bundle
                     fragments.put(position, fragment)
                 }
 

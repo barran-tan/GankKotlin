@@ -14,7 +14,7 @@ import com.barran.gank.R
 import com.barran.gank.libs.recycler.*
 import com.barran.gank.api.ApiServiceImpl
 import com.barran.gank.api.beans.DataInfo
-import com.barran.gank.api.beans.DatasResponse
+import com.barran.gank.api.beans.DataResponse
 import com.barran.gank.api.beans.GankDataType
 import com.barran.gank.libs.greendao.DataCache
 import io.reactivex.Observer
@@ -27,11 +27,11 @@ import java.util.ArrayList
  *
  * Created by tanwei on 2017/9/29.
  */
-class DataListFragment(infoType: Int = GankDataType.ANDROID.ordinal) : Fragment() {
+class DataListFragment : Fragment() {
 
     private val mPageCount = 10
     private var mPage = 1
-    private var type: String = GankDataType.getName(infoType)
+    private lateinit var type: String
 
     private val dataList = ArrayList<DataInfo>()
 
@@ -41,6 +41,13 @@ class DataListFragment(infoType: Int = GankDataType.ANDROID.ordinal) : Fragment(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        type = if (arguments != null) {
+            val infoType = arguments.getInt(EXTRA_INFO_TYPE, GankDataType.ANDROID.ordinal)
+            GankDataType.getName(infoType)
+        } else {
+            GankDataType.ANDROID.typeName
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
@@ -94,7 +101,7 @@ class DataListFragment(infoType: Int = GankDataType.ANDROID.ordinal) : Fragment(
 
         Log.i("DataList", "getData  $page")
 
-        ApiServiceImpl.getDataByType(type, mPageCount, page, object : Observer<DatasResponse> {
+        ApiServiceImpl.getDataByType(type, mPageCount, page, object : Observer<DataResponse> {
             override fun onComplete() {
                 Log.v("getData", "onComplete")
                 refreshLayout.isRefreshing = false
@@ -107,7 +114,7 @@ class DataListFragment(infoType: Int = GankDataType.ANDROID.ordinal) : Fragment(
                 adapter.showLoadMore()
             }
 
-            override fun onNext(t: DatasResponse) {
+            override fun onNext(t: DataResponse) {
                 Log.v("getData", "onNext")
                 refreshLayout.isRefreshing = false
                 adapter.showLoadMore()

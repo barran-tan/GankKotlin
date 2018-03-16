@@ -1,7 +1,7 @@
 package com.barran.gank.api;
 
 import com.barran.gank.api.beans.DailyDataResponse;
-import com.barran.gank.api.beans.DatasResponse;
+import com.barran.gank.api.beans.DataResponse;
 import com.barran.gank.api.beans.HistoryDates;
 
 import io.reactivex.Observable;
@@ -42,5 +42,5 @@ public interface APIService {
      *
      */
     @GET("{url}")
-    Observable<DatasResponse> getDataByType(@Path("url") String url);
+    Observable<DataResponse> getDataByType(@Path("url") String url);
 }

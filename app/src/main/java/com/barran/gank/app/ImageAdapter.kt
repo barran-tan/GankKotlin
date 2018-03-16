@@ -5,14 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import com.barran.gank.R
 import com.barran.gank.libs.recycler.BaseRecyclerHolder
 import com.barran.gank.libs.recycler.RecyclerViewItemClickListener
 import com.barran.gank.utils.load
-
-import com.squareup.picasso.Picasso
-
 import shivam.developer.featuredrecyclerview.FeatureRecyclerViewAdapter
 
 

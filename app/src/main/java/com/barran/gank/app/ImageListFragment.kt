@@ -13,7 +13,7 @@ import com.barran.gank.libs.recycler.RecyclerViewItemClickListener
 import com.barran.gank.libs.recycler.RefreshLoadMoreListener
 import com.barran.gank.libs.recycler.RefreshScrollListener
 import com.barran.gank.api.ApiServiceImpl
-import com.barran.gank.api.beans.DatasResponse
+import com.barran.gank.api.beans.DataResponse
 import com.barran.gank.api.beans.GankDataType
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
@@ -75,7 +75,7 @@ class ImageListFragment : Fragment() {
 
     private fun getImages(page: Int = 0) {
         Log.i("ImageList", "getImages page : $page")
-        ApiServiceImpl.getDataByType(GankDataType.WELFARE.typeName, pageCount, page, object : Observer<DatasResponse> {
+        ApiServiceImpl.getDataByType(GankDataType.WELFARE.typeName, pageCount, page, object : Observer<DataResponse> {
             override fun onComplete() {
                 Log.v("getImages", "onComplete")
                 isLoading = false
@@ -86,7 +86,7 @@ class ImageListFragment : Fragment() {
                 isLoading = false
             }
 
-            override fun onNext(t: DatasResponse) {
+            override fun onNext(t: DataResponse) {
                 isLoading = false
                 Log.v("getImages", "results size:${t.results.size}")
 

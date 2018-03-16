@@ -63,29 +63,27 @@ class DataInfo {
 }
 
 enum class GankDataType(val typeName: String) {
-    ALL("全部"), ANDROID("Android"), IOS("IOS"), PASTTIME("休息视频"), WELFARE("福利"),
-    EXPANDINFOMATION("拓展资源"),
+    ALL("全部"), ANDROID("Android"), IOS("IOS"), PAST_TIME("休息视频"), WELFARE("福利"),
+    EXPAND_INFORMATION("拓展资源"),
     FRONTEND("前端"), RECOMMEND("瞎推荐"), APP("APP");
 
     companion object {
-        fun getName(type: Int): String {
-            return when (type) {
-                ALL.ordinal -> "全部"
-                ANDROID.ordinal -> "Android"
-                IOS.ordinal -> "IOS"
-                PASTTIME.ordinal -> "休息视频"
-                WELFARE.ordinal -> "福利"
-                EXPANDINFOMATION.ordinal -> "拓展资源"
-                FRONTEND.ordinal -> "前端"
-                RECOMMEND.ordinal -> "瞎推荐"
-                APP.ordinal -> "APP"
-                else -> "未分类"
-            }
+        fun getName(type: Int): String = when (type) {
+            ALL.ordinal -> ALL.typeName
+            ANDROID.ordinal -> ANDROID.typeName
+            IOS.ordinal -> IOS.typeName
+            PAST_TIME.ordinal -> PAST_TIME.typeName
+            WELFARE.ordinal -> WELFARE.typeName
+            EXPAND_INFORMATION.ordinal -> EXPAND_INFORMATION.typeName
+            FRONTEND.ordinal -> FRONTEND.typeName
+            RECOMMEND.ordinal -> RECOMMEND.typeName
+            APP.ordinal -> APP.typeName
+            else -> "未分类"
         }
     }
 }
 
-class DatasResponse {
+class DataResponse {
     var error = false
     var results = ArrayList<DataInfo>()
 }

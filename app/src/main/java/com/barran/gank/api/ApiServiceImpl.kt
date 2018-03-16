@@ -2,7 +2,7 @@ package com.barran.gank.api
 
 import com.barran.gank.libs.retrofit.RetrofitClient
 import com.barran.gank.api.beans.DailyDataResponse
-import com.barran.gank.api.beans.DatasResponse
+import com.barran.gank.api.beans.DataResponse
 import com.barran.gank.api.beans.HistoryDates
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -47,7 +47,7 @@ object ApiServiceImpl {
      * http://gank.io/api/data/Android/10/1
      *
      */
-    fun getDataByType(type: String, pageCount: Int, pageNum: Int, subscriber: Observer<DatasResponse>) {
+    fun getDataByType(type: String, pageCount: Int, pageNum: Int, subscriber: Observer<DataResponse>) {
 
         RetrofitClient.instance.apiService.getDataByType("api/data/$type/$pageCount/$pageNum")
                 .subscribeOn(Schedulers.io())

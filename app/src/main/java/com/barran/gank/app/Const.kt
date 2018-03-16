@@ -21,8 +21,10 @@ const val EXTRA_URL = "url"
 const val EXTRA_IMAGE_LIST = "image_list"
 const val EXTRA_INDEX = "index"
 
+const val EXTRA_INFO_TYPE = "extra_info_type"
+
 fun viewInfo(activity: Activity, data: DataInfo) {
-    if (GankDataType.PASTTIME.typeName == data.type) {
+    if (GankDataType.PAST_TIME.typeName == data.type) {
         viewInWeb(activity, data.url)
     } else {
         val intent = Intent(activity, HtmlActivity::class.java)
