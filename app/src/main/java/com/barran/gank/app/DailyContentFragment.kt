@@ -87,6 +87,8 @@ class DailyContentFragment : Fragment() {
 
                 // add history
                 DataCache.cache.insertHistoryData(data)
+                // set read
+                data.url?.let { DataCache.cache.setRead(data.url!!, true) }
 
                 if (data.url != null) {
                     viewInfo(activity, data)
