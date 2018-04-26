@@ -76,6 +76,10 @@ class DataListFragment : Fragment() {
                 val data = dataList[position]
                 // add history
                 DataCache.cache.insertHistoryData(data)
+                // set read
+                data.url?.let { DataCache.cache.setRead(data.url!!, true) }
+
+                adapter.notifyItemChanged(position)
 
                 viewInfo(activity, data)
             }

@@ -67,6 +67,36 @@ class DataCache private constructor() {
         return list
     }
 
+    fun setRead(url: String, read: Boolean) {
+        val daoMaster = DaoMaster(openHelper.writableDatabase)
+        val daoSession = daoMaster.newSession()
+        val infoDao = daoSession.dataInfoEntityDao
+        val qb = infoDao.queryBuilder().where(DataInfoEntityDao.Properties.LinkUrl.eq(url), DataInfoEntityDao.Properties.Read.notEq(read))
+        if (!qb.list().isEmpty()) {
+            val entity = qb.list().first()
+            entity.read = read
+            infoDao.update(entity)
+        }
+        daoSession.clear()
+    }
+
+    fun isRead(url: String): Boolean {
+
+        var read = false
+
+        val daoMaster = DaoMaster(openHelper.writableDatabase)
+        val daoSession = daoMaster.newSession()
+        val infoDao = daoSession.dataInfoEntityDao
+        val qb = infoDao.queryBuilder().where(DataInfoEntityDao.Properties.LinkUrl.eq(url))
+        if (!qb.list().isEmpty()) {
+            val entity = qb.list().first()
+            read = entity.read
+        }
+        daoSession.clear()
+
+        return read
+    }
+
     fun insertHistoryData(data: DataInfo) {
         val daoMaster = DaoMaster(openHelper.writableDatabase)
         val daoSession = daoMaster.newSession()

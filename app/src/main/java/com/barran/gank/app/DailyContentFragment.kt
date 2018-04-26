@@ -208,10 +208,11 @@ class ItemHolder(itemView: View, clickListener: RecyclerViewItemClickListener?) 
     fun update(data: DataInfo) {
         image.load(data.images?.get(0))
         title.text = data.desc
-        author.text = data.who
+        author.text = data.who ?: "unknown"
         time.text = data.publishedAt?.dateFormat()
 
-        if (data.read)
+        val read = data.url != null && DataCache.cache.isRead(data.url!!)
+        if (read)
             itemView.setBackgroundResource(R.drawable.bg_read)
         else {
             itemView.setBackgroundResource(R.drawable.bg_unread)

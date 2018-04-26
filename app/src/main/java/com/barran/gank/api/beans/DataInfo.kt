@@ -54,7 +54,7 @@ class DataInfo {
 
     var used = false
 
-    var sourse: String? = null
+    var source: String? = null
     var images: Array<String>? = null
 
     // custom field
