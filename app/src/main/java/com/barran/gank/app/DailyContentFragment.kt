@@ -208,7 +208,9 @@ class ItemHolder(itemView: View, clickListener: RecyclerViewItemClickListener?) 
     var hideDivider = false
 
     fun update(data: DataInfo) {
-        image.load(data.images?.get(0))
+        if (data.images != null && data.images!!.isNotEmpty()) {
+            image.load(data.images!![0])
+        }
         title.text = data.desc
         author.text = data.who ?: "unknown"
         time.text = data.publishedAt?.dateFormat()

@@ -248,6 +248,18 @@ class CoroutineTest {
 //        calculateMD5 of test.txt @scheduler
         // TODO 其他子线程的log也没看到
         // 通过测试，发现是由于主线程先于子线程结束了引起的，去掉子线程的sleep或者给主线程添加sleep都可以看到完整log
+
+//        完整log
+
+//        before coroutine
+//        in coroutine, before suspend
+//        in suspend block
+//        after coroutine
+//        calculateMD5 of test.txt @scheduler
+//        in coroutine, after suspend. result = 1524729620318
+//        resume kotlin.Unit
+//        after resume
+
     }
 
     private fun asyncCalculateMD5(filePath: String, block: suspend () -> Unit) {
