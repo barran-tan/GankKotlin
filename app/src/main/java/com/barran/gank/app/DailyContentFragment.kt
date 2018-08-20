@@ -213,7 +213,7 @@ class ItemHolder(itemView: View, clickListener: RecyclerViewItemClickListener?) 
         }
         title.text = data.desc
         author.text = data.who ?: "unknown"
-        time.text = data.publishedAt?.dateFormat()
+        time.text = data.publishedAt?.dateFormat() ?: "unknown"
 
         val read = data.url != null && DataCache.cache.isRead(data.url!!)
         if (read)

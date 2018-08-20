@@ -142,9 +142,6 @@ class DataListFragment : Fragment() {
                 ItemHolder(activity.layoutInflater.inflate(R.layout.item_daily_info_content, parent, false), itemClickListener)
 
         override fun onBindViewHolder(holder: BaseRecyclerHolder?, position: Int) {
-            /**
-             * 注意：覆写此方法需要调用super
-             */
             super.onBindViewHolder(holder, position)
             if (holder is ItemHolder) {
                 holder.hideDivider = true

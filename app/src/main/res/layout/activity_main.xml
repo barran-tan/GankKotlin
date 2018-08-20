@@ -31,7 +31,7 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/white"
                     android:minHeight="20dp"
-                    app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+                    app:layout_scrollFlags="scroll|enterAlways"
                     app:tabIndicatorColor="@color/green"
                     app:tabMode="scrollable"
                     app:tabSelectedTextColor="@color/green"

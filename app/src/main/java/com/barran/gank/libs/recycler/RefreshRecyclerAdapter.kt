@@ -1,5 +1,6 @@
 package com.barran.gank.libs.recycler
 
+import android.support.annotation.CallSuper
 import android.view.ViewGroup
 import android.widget.TextView
 import android.view.LayoutInflater
@@ -68,9 +69,7 @@ abstract class RefreshRecyclerAdapter<T>(private val dataList: List<T>, itemClic
 
     abstract fun createContentHolder(parent: ViewGroup?, viewType: Int): BaseRecyclerHolder
 
-    /**
-     * 注意：覆写此方法需要调用super
-     */
+    @CallSuper
     override fun onBindViewHolder(holder: BaseRecyclerHolder?, position: Int) {
         if (position == dataList.size) {
             holder as FooterViewHolder
