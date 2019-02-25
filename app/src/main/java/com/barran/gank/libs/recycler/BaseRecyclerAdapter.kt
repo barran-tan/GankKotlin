@@ -13,12 +13,8 @@ import android.view.ViewGroup
 abstract class BaseRecyclerAdapter(var itemClickListener: RecyclerViewItemClickListener?) :RecyclerView.Adapter<BaseRecyclerHolder>(){
 
     final override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BaseRecyclerHolder {
-        val holder = createHolder(parent, viewType)
-        if (itemClickListener != null) {
-            createHolder(parent, viewType)
-        }
 
-        return holder
+        return createHolder(parent, viewType)
     }
 
     abstract fun createHolder(parent: ViewGroup?, viewType: Int): BaseRecyclerHolder
