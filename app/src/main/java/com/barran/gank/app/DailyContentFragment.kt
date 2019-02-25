@@ -208,17 +208,27 @@ class ItemHolder(itemView: View, clickListener: RecyclerViewItemClickListener?) 
     var hideDivider = false
 
     fun update(data: DataInfo) {
+        update(data, true)
+    }
+
+    fun update(data: DataInfo, showRead: Boolean) {
         if (data.images != null && data.images!!.isNotEmpty()) {
             image.load(data.images!![0])
+        } else {
+            image.setImageResource(R.mipmap.empty);
         }
         title.text = data.desc
         author.text = data.who ?: "unknown"
         time.text = data.publishedAt?.dateFormat() ?: "unknown"
 
-        val read = data.url != null && DataCache.cache.isRead(data.url!!)
-        if (read)
-            itemView.setBackgroundResource(R.drawable.bg_read)
-        else {
+        if (showRead) {
+            val read = data.url != null && DataCache.cache.isRead(data.url!!)
+            if (read)
+                itemView.setBackgroundResource(R.drawable.bg_read)
+            else {
+                itemView.setBackgroundResource(R.drawable.bg_unread)
+            }
+        } else {
             itemView.setBackgroundResource(R.drawable.bg_unread)
         }
 

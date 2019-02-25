@@ -1,80 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingBottom="@dimen/dimen_6"
     android:paddingLeft="@dimen/default_dimen_margin"
+    android:paddingRight="@dimen/default_dimen_margin"
     android:paddingTop="@dimen/dimen_6">
 
     <ImageView
         android:id="@+id/item_daily_info_content_image"
         style="@style/SmallImageStyle"
         android:layout_centerVertical="true"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <RelativeLayout
-        android:id="@+id/item_daily_info_content_container"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/item_daily_info_content_title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/default_dimen_margin"
-        android:layout_toRightOf="@id/item_daily_info_content_image">
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="title"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/text_content"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toTopOf="@+id/item_daily_info_content_author"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintLeft_toRightOf="@+id/item_daily_info_content_image"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/item_daily_info_content_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:text="title"
-            android:textColor="@color/text_black"
-            android:textSize="@dimen/text_content" />
+    <TextView
+        android:id="@+id/item_daily_info_content_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_dimen_text"
+        android:drawableLeft="@mipmap/author"
+        android:drawablePadding="@dimen/default_dimen_text"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="author"
+        android:textColor="@color/gray_dark"
+        android:textSize="@dimen/text_content_summary"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toLeftOf="@+id/item_daily_info_content_title"
+        app:layout_constraintRight_toLeftOf="@+id/item_daily_info_content_time"
+        app:layout_constraintTop_toBottomOf="@+id/item_daily_info_content_title" />
 
-        <TextView
-            android:id="@+id/item_daily_info_content_author"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/item_daily_info_content_title"
-            android:layout_below="@id/item_daily_info_content_title"
-            android:layout_marginTop="@dimen/default_dimen_text"
-            android:drawableLeft="@mipmap/author"
-            android:drawablePadding="@dimen/default_dimen_text"
-            android:gravity="center_vertical"
-            android:text="author"
-            android:textColor="@color/gray_dark"
-            android:textSize="@dimen/text_content_summary" />
+    <TextView
+        android:id="@+id/item_daily_info_content_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/item_daily_info_content_author"
+        android:layout_marginLeft="@dimen/default_dimen_margin"
+        android:drawableLeft="@mipmap/time"
+        android:drawablePadding="@dimen/default_dimen_text"
+        android:gravity="center_vertical"
+        android:text="time"
+        android:textColor="@color/gray_dark"
+        android:textSize="@dimen/text_content_summary"
+        app:layout_constraintBaseline_toBaselineOf="@+id/item_daily_info_content_author"
+        app:layout_constraintLeft_toRightOf="@+id/item_daily_info_content_author"
+        app:layout_constraintRight_toRightOf="parent" />
 
-        <TextView
-            android:id="@+id/item_daily_info_content_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/item_daily_info_content_author"
-            android:layout_marginLeft="@dimen/default_dimen_margin"
-            android:layout_toRightOf="@id/item_daily_info_content_author"
-            android:drawableLeft="@mipmap/time"
-            android:drawablePadding="@dimen/default_dimen_text"
-            android:gravity="center_vertical"
-            android:text="time"
-            android:textColor="@color/gray_dark"
-            android:textSize="@dimen/text_content_summary" />
-
-        <ImageView
-            android:id="@+id/item_daily_info_content_arrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignTop="@id/item_daily_info_content_author"
-            android:layout_marginRight="@dimen/default_dimen_margin"
-            android:src="@mipmap/arrow_right" />
-
-    </RelativeLayout>
+    <android.support.constraint.Barrier
+        android:id="@+id/item_daily_info_content_bottom_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="item_daily_info_content_image,item_daily_info_content_author" />
 
     <View
         android:id="@+id/item_daily_info_content_divider"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_1"
-        android:layout_below="@id/item_daily_info_content_image"
         android:layout_marginTop="@dimen/dimen_6"
-        android:background="@color/divider_list_color" />
+        android:background="@color/divider_list_color"
+        app:layout_constraintTop_toBottomOf="@+id/item_daily_info_content_bottom_barrier" />
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

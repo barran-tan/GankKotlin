@@ -60,7 +60,7 @@ class FavoriteListActivity : AppCompatActivity() {
         override fun onBindViewHolder(holder: BaseRecyclerHolder?, position: Int) {
             if (holder is ItemHolder) {
                 holder.hideDivider = true
-                holder.update(dataList[position])
+                holder.update(dataList[position], false)
             }
         }
     }

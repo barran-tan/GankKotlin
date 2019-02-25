@@ -123,7 +123,7 @@ class DataListFragment : Fragment() {
                 refreshLayout.isRefreshing = false
                 adapter.showLoadMore()
 
-                if (page == 0 && dataList.isNotEmpty()) {
+                if (page == 1 && dataList.isNotEmpty()) {
                     dataList.clear()
                 }
 

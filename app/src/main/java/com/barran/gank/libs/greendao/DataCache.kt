@@ -120,4 +120,14 @@ class DataCache private constructor() {
         daoSession.clear()
         return list
     }
+
+    fun clearHistoryDataList() {
+        val daoMaster = DaoMaster(openHelper.writableDatabase)
+        val daoSession = daoMaster.newSession()
+        val infoDao = daoSession.dataInfoEntityDao
+
+        val list = infoDao.queryBuilder().where(DataInfoEntityDao.Properties.Favored.eq(false)).list()
+
+        list.forEach { daoSession.dataInfoEntityDao.delete(it) }
+    }
 }

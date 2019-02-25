@@ -17,4 +17,14 @@
     <string name="text_github_url">https://github.com/barran-tan/GankKotlin</string>
     <string name="text_gank_api_title">关于api</string>
     <string name="text_gank_api_url">http://gank.io/api</string>
+
+
+    <string name="dialog_message_clear_history">确定清除全部浏览记录吗\n(不会删除收藏列表)</string>
+    <string name="dialog_ok">确定</string>
+    <string name="dialog_cancel">取消</string>
+
+    <string name="dialog_message_input">请输入搜索内容</string>
+    <string name="dialog_search_title">搜标题</string>
+    <string name="dialog_search_author">搜作者</string>
+
 </resources>
