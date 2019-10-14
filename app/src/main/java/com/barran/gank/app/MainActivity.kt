@@ -2,19 +2,20 @@ package com.barran.gank.app
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.NavigationView
-import android.support.design.widget.TabLayout
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentPagerAdapter
-import android.support.v4.view.ViewPager
-import android.support.v4.widget.DrawerLayout
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.tabs.TabLayout
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager.widget.ViewPager
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import android.util.SparseArray
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.core.view.GravityCompat
 import com.barran.gank.R
 import com.barran.gank.api.beans.GankDataType
 
@@ -69,7 +70,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViewPager(viewPager: ViewPager) {
-        viewPager.adapter = object : FragmentPagerAdapter(supportFragmentManager) {
+        viewPager.adapter = object : androidx.fragment.app.FragmentPagerAdapter(supportFragmentManager) {
             override fun getItem(position: Int): Fragment {
                 val fragment: Fragment
                 if (fragments.get(position) != null) {
@@ -111,7 +112,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.activity_main_navigation_view)
         navigationView.setNavigationItemSelectedListener { item ->
 
-            drawerLayout.closeDrawer(Gravity.START, false)
+            drawerLayout.closeDrawer(GravityCompat.START, false)
             when (item.itemId) {
                 R.id.menu_navigation_history -> startActivity(Intent(this, ViewedInfoListActivity::class.java))
 
@@ -135,17 +136,17 @@ class MainActivity : AppCompatActivity() {
             R.id.menu_history -> startActivity(Intent(this, HistoryDatesActivity::class.java))
             android.R.id.home -> onBackPressed()
             R.id.menu_menu ->
-                if (drawerLayout.isDrawerOpen(Gravity.START))
-                    drawerLayout.closeDrawer(Gravity.START)
+                if (drawerLayout.isDrawerOpen(GravityCompat.START))
+                    drawerLayout.closeDrawer(GravityCompat.START)
                 else
-                    drawerLayout.openDrawer(Gravity.START)
+                    drawerLayout.openDrawer(GravityCompat.START)
         }
         return true
     }
 
     override fun onBackPressed() {
-        if (drawerLayout.isDrawerOpen(Gravity.START)) {
-            drawerLayout.closeDrawer(Gravity.START)
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
             return
         }
         super.onBackPressed()

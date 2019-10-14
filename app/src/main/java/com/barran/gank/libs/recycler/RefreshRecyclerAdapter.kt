@@ -1,6 +1,6 @@
 package com.barran.gank.libs.recycler
 
-import android.support.annotation.CallSuper
+import androidx.annotation.CallSuper
 import android.view.ViewGroup
 import android.widget.TextView
 import android.view.LayoutInflater

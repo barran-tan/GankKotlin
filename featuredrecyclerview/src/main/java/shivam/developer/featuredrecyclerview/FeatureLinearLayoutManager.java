@@ -1,9 +1,11 @@
 package shivam.developer.featuredrecyclerview;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 
-public class FeatureLinearLayoutManager extends android.support.v7.widget.LinearLayoutManager{
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+public class FeatureLinearLayoutManager extends LinearLayoutManager {
 
     public FeatureLinearLayoutManager(Context context) {
         super(context);

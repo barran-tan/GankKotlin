@@ -3,7 +3,7 @@ package com.barran.gank.libs.recycler
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Rect
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import com.barran.gank.R
 import com.barran.gank.app.App
@@ -13,7 +13,7 @@ import com.barran.gank.app.App
  *
  * Created by tanwei on 2017/10/11.
  */
-class VerticalItemDecoration : RecyclerView.ItemDecoration() {
+class VerticalItemDecoration : androidx.recyclerview.widget.RecyclerView.ItemDecoration() {
 
     private var dividerHeight: Int
     private val dividerPaint: Paint = Paint()
@@ -46,8 +46,8 @@ class VerticalItemDecoration : RecyclerView.ItemDecoration() {
         return this
     }
 
-    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView,
-                                state: RecyclerView.State) {
+    override fun getItemOffsets(outRect: Rect, view: View, parent: androidx.recyclerview.widget.RecyclerView,
+                                state: androidx.recyclerview.widget.RecyclerView.State) {
         super.getItemOffsets(outRect, view, parent, state)
         outRect.bottom = dividerHeight
     }
@@ -55,7 +55,7 @@ class VerticalItemDecoration : RecyclerView.ItemDecoration() {
     /***
      * 在item 的draw 之前调用
      */
-    override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
+    override fun onDraw(c: Canvas, parent: androidx.recyclerview.widget.RecyclerView, state: androidx.recyclerview.widget.RecyclerView.State) {
         val childCount = parent.childCount
         var left = parent.paddingLeft
         if (!includePadding) {
@@ -77,7 +77,7 @@ class VerticalItemDecoration : RecyclerView.ItemDecoration() {
     /***
      * 在item 的draw 之后调用
      */
-    override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
+    override fun onDrawOver(c: Canvas, parent: androidx.recyclerview.widget.RecyclerView, state: androidx.recyclerview.widget.RecyclerView.State) {
         super.onDrawOver(c, parent, state)
 
         if (showHeaderDivider && parent.childCount > 0) {

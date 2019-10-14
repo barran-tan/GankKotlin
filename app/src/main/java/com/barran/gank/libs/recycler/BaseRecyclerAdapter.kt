@@ -1,6 +1,6 @@
 package com.barran.gank.libs.recycler
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 
@@ -10,7 +10,7 @@ import android.view.ViewGroup
  * Created by tanwei on 2017/10/1.
  */
 
-abstract class BaseRecyclerAdapter(var itemClickListener: RecyclerViewItemClickListener?) :RecyclerView.Adapter<BaseRecyclerHolder>(){
+abstract class BaseRecyclerAdapter(var itemClickListener: RecyclerViewItemClickListener?) : androidx.recyclerview.widget.RecyclerView.Adapter<BaseRecyclerHolder>(){
 
     final override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRecyclerHolder {
 
@@ -21,7 +21,7 @@ abstract class BaseRecyclerAdapter(var itemClickListener: RecyclerViewItemClickL
 
 }
 
-open class BaseRecyclerHolder(view: View, itemClickListener: RecyclerViewItemClickListener?) : RecyclerView.ViewHolder(view) {
+open class BaseRecyclerHolder(view: View, itemClickListener: RecyclerViewItemClickListener?) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
     init {
         if (itemClickListener != null) {
             view.setOnClickListener { itemClickListener.onItemClick(this, adapterPosition) }

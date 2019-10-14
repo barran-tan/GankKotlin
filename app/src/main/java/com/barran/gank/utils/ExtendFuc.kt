@@ -3,8 +3,8 @@ package com.barran.gank.utils
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.Environment
-import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import android.text.SpannableString
 import android.util.Log
 import android.widget.ImageView
@@ -27,7 +27,7 @@ import java.io.FileOutputStream
  * Created by tanwei on 2017/9/29.
  */
 
-fun AppCompatActivity.push(containerId: Int, fragment: Fragment) {
+fun AppCompatActivity.push(containerId: Int, fragment: androidx.fragment.app.Fragment) {
     val transaction = supportFragmentManager.beginTransaction()
     transaction.add(containerId, fragment)
     transaction.commit()

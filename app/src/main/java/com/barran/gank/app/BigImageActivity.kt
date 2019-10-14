@@ -2,12 +2,11 @@ package com.barran.gank.app
 
 import android.graphics.Bitmap
 import android.os.Bundle
-import android.support.v4.view.PagerAdapter
-import android.support.v4.view.ViewPager
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager.widget.ViewPager
 import com.barran.gank.R
 import com.barran.gank.utils.download
 import com.github.chrisbanes.photoview.PhotoView
@@ -18,10 +17,10 @@ import com.squareup.picasso.Picasso
 
 class BigImageActivity : AppCompatActivity() {
 
-    lateinit private var imageList: List<String>
+    private lateinit var imageList: List<String>
     private var index: Int = 0
 
-    lateinit private var indexText: TextView
+    private lateinit var indexText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +34,7 @@ class BigImageActivity : AppCompatActivity() {
             return
         }
 
-        val viewPager = findViewById(R.id.activity_big_image_view_pager) as ViewPager
+        val viewPager = findViewById<ViewPager>(R.id.activity_big_image_view_pager)
         viewPager.adapter = ViewPageAdapter()
         viewPager.currentItem = index
         viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
@@ -66,7 +65,7 @@ class BigImageActivity : AppCompatActivity() {
         indexText.text = "${index + 1}/${imageList.size}"
     }
 
-    inner class ViewPageAdapter : PagerAdapter() {
+    inner class ViewPageAdapter : androidx.viewpager.widget.PagerAdapter() {
         private val cacheView = ArrayList<PhotoView>()
 
         override fun instantiateItem(container: ViewGroup, position: Int): Any {

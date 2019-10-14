@@ -1,25 +1,24 @@
 package com.barran.gank.app
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.barran.gank.R
-import com.barran.gank.libs.recycler.*
 import com.barran.gank.api.ApiServiceImpl
 import com.barran.gank.api.beans.DataInfo
 import com.barran.gank.api.beans.DataResponse
 import com.barran.gank.api.beans.GankDataType
 import com.barran.gank.libs.greendao.DataCache
+import com.barran.gank.libs.recycler.*
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
-import java.util.ArrayList
+import java.util.*
 
 
 /**
