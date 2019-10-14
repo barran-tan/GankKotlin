@@ -35,28 +35,28 @@ class DataListFragment : Fragment() {
 
     private val dataList = ArrayList<DataInfo>()
 
-    lateinit private var refreshLayout: SwipeRefreshLayout
-    lateinit private var recyclerView: RecyclerView
-    lateinit private var adapter: DataAdapter
+    private lateinit var refreshLayout: SwipeRefreshLayout
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: DataAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         type = if (arguments != null) {
-            val infoType = arguments.getInt(EXTRA_INFO_TYPE, GankDataType.ANDROID.ordinal)
+            val infoType = arguments!!.getInt(EXTRA_INFO_TYPE, GankDataType.ANDROID.ordinal)
             GankDataType.getName(infoType)
         } else {
             GankDataType.ANDROID.typeName
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflater?.inflate(R.layout.fragment_info_list, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+            inflater.inflate(R.layout.fragment_info_list, container, false)
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        refreshLayout = view?.findViewById(R.id.fragment_info_list_refresh_layout) as SwipeRefreshLayout
+        refreshLayout = view.findViewById(R.id.fragment_info_list_refresh_layout) as SwipeRefreshLayout
         recyclerView = view.findViewById(R.id.fragment_info_list_recycler_view) as RecyclerView
 
         recyclerView.addOnScrollListener(RefreshScrollListener(object : RefreshLoadMoreListener {
@@ -81,7 +81,7 @@ class DataListFragment : Fragment() {
 
                 adapter.notifyItemChanged(position)
 
-                viewInfo(activity, data)
+                viewInfo(activity!!, data)
             }
         })
 
@@ -139,9 +139,9 @@ class DataListFragment : Fragment() {
     private inner class DataAdapter(dataList: List<DataInfo>, clickListener: RecyclerViewItemClickListener?)
         : RefreshRecyclerAdapter<DataInfo>(dataList, clickListener) {
         override fun createContentHolder(parent: ViewGroup?, viewType: Int): BaseRecyclerHolder =
-                ItemHolder(activity.layoutInflater.inflate(R.layout.item_daily_info_content, parent, false), itemClickListener)
+                ItemHolder(activity!!.layoutInflater.inflate(R.layout.item_daily_info_content, parent, false), itemClickListener)
 
-        override fun onBindViewHolder(holder: BaseRecyclerHolder?, position: Int) {
+        override fun onBindViewHolder(holder: BaseRecyclerHolder, position: Int) {
             super.onBindViewHolder(holder, position)
             if (holder is ItemHolder) {
                 holder.hideDivider = true

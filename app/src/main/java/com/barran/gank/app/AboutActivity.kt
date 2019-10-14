@@ -13,7 +13,7 @@ class AboutActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
 
-        setSupportActionBar(findViewById(R.id.activity_about_toolbar) as Toolbar)
+        setSupportActionBar(findViewById<Toolbar>(R.id.activity_about_toolbar))
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

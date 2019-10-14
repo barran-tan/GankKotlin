@@ -37,11 +37,11 @@ class ViewedInfoListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_viewed_info_list)
 
-        setSupportActionBar(findViewById(R.id.activity_viewed_info_list_toolbar) as Toolbar)
+        setSupportActionBar(findViewById<Toolbar>(R.id.activity_viewed_info_list_toolbar))
 
         dataList = DataCache.cache.getHistoryDataList()
 
-        val recyclerView = findViewById(R.id.fragment_viewed_info_list_recycler_view) as RecyclerView
+        val recyclerView = findViewById<RecyclerView>(R.id.fragment_viewed_info_list_recycler_view)
 
         adapter = DataAdapter(object : RecyclerViewItemClickListener {
             override fun onItemClick(holder: BaseRecyclerHolder, position: Int) {
@@ -138,10 +138,10 @@ class ViewedInfoListActivity : AppCompatActivity() {
         : BaseRecyclerAdapter(clickListener) {
         override fun getItemCount(): Int = if (searchList.size > 0) searchList.size else dataList.size
 
-        override fun createHolder(parent: ViewGroup?, viewType: Int): BaseRecyclerHolder =
+        override fun createHolder(parent: ViewGroup, viewType: Int): BaseRecyclerHolder =
                 ItemHolder(layoutInflater.inflate(R.layout.item_daily_info_content, parent, false), itemClickListener)
 
-        override fun onBindViewHolder(holder: BaseRecyclerHolder?, position: Int) {
+        override fun onBindViewHolder(holder: BaseRecyclerHolder, position: Int) {
             if (holder is ItemHolder) {
                 holder.hideDivider = true
                 val data = if (searchList.size > 0) searchList[position] else dataList[position]

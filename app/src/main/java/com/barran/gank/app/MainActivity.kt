@@ -14,6 +14,7 @@ import android.util.SparseArray
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.barran.gank.R
 import com.barran.gank.api.beans.GankDataType
 
@@ -35,11 +36,11 @@ class MainActivity : AppCompatActivity() {
 
         fragments = SparseArray(GankDataType.values().size)
 
-        val tabLayout = findViewById(R.id.activity_main_tab_layout) as TabLayout
-        val viewPager = findViewById(R.id.activity_main_tab_viewpager) as ViewPager
+        val tabLayout = findViewById<TabLayout>(R.id.activity_main_tab_layout)
+        val viewPager = findViewById<ViewPager>(R.id.activity_main_tab_viewpager)
         initViewPager(viewPager)
 
-        val toolBar = findViewById(R.id.activity_main_toolbar) as Toolbar
+        val toolBar = findViewById<Toolbar>(R.id.activity_main_toolbar)
         setSupportActionBar(toolBar)
 
         // 绑定到viewpager
@@ -56,7 +57,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        findViewById(R.id.activity_main_fab).setOnClickListener {
+        findViewById<View>(R.id.activity_main_fab).setOnClickListener {
             startActivity(Intent(
                     this,
                     ImagesActivity::class.java
@@ -105,9 +106,9 @@ class MainActivity : AppCompatActivity() {
     private fun initDrawerMenu() {
 
         drawerLayout = findViewById(
-                R.id.activity_main_drawer) as DrawerLayout
-        val navigationView = findViewById(
-                R.id.activity_main_navigation_view) as NavigationView
+                R.id.activity_main_drawer)
+        val navigationView = findViewById<NavigationView>(
+                R.id.activity_main_navigation_view)
         navigationView.setNavigationItemSelectedListener { item ->
 
             drawerLayout.closeDrawer(Gravity.START, false)

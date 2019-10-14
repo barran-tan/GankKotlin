@@ -41,12 +41,12 @@ class HistoryDatesFragment : Fragment() {
 //        }
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflater?.inflate(R.layout.fragment_history_dates, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+            inflater.inflate(R.layout.fragment_history_dates, container, false)
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val recycler = view?.findViewById(R.id.fragment_history_dates_recycler_view) as RecyclerView
+        val recycler = view.findViewById(R.id.fragment_history_dates_recycler_view) as RecyclerView
         adapter = Adapter(object : RecyclerViewItemClickListener {
             override fun onItemClick(holder: BaseRecyclerHolder, position: Int) {
                 val intent = Intent(activity, DailyContentActivity::class.java)
@@ -59,7 +59,7 @@ class HistoryDatesFragment : Fragment() {
 
         recycler.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         val decoration = getDecoration()
-        decoration.setSpanIndexListener { view, spanIndex -> view.setBackgroundResource(if (spanIndex == 0) R.drawable.pop_left else R.drawable.pop_right) }
+        decoration.setSpanIndexListener { item, spanIndex -> item.setBackgroundResource(if (spanIndex == 0) R.drawable.pop_left else R.drawable.pop_right) }
         recycler.addItemDecoration(decoration)
 
         getHistoryDates()
@@ -120,10 +120,10 @@ class HistoryDatesFragment : Fragment() {
     inner class Adapter(clickListener: RecyclerViewItemClickListener?) : BaseRecyclerAdapter(clickListener) {
         override fun getItemCount(): Int = datesList.size
 
-        override fun createHolder(parent: ViewGroup?, viewType: Int): BaseRecyclerHolder =
-                DateHolder(activity.layoutInflater.inflate(R.layout.item_date, parent, false), itemClickListener)
+        override fun createHolder(parent: ViewGroup, viewType: Int): BaseRecyclerHolder =
+                DateHolder(activity!!.layoutInflater.inflate(R.layout.item_date, parent, false), itemClickListener)
 
-        override fun onBindViewHolder(holder: BaseRecyclerHolder?, position: Int) {
+        override fun onBindViewHolder(holder: BaseRecyclerHolder, position: Int) {
             if (holder is DateHolder) {
                 holder.date.text = datesList[position]
             }

@@ -18,7 +18,7 @@ class ImagesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_empty)
 
-        setSupportActionBar(findViewById(R.id.activity_empty_toolbar) as Toolbar)
+        setSupportActionBar(findViewById<Toolbar>(R.id.activity_empty_toolbar))
 
         val fragment = ImageListFragment()
         push(R.id.activity_empty_container, fragment)

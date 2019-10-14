@@ -47,7 +47,7 @@ class VerticalItemDecoration : RecyclerView.ItemDecoration() {
     }
 
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView,
-                                state: RecyclerView.State?) {
+                                state: RecyclerView.State) {
         super.getItemOffsets(outRect, view, parent, state)
         outRect.bottom = dividerHeight
     }
@@ -55,7 +55,7 @@ class VerticalItemDecoration : RecyclerView.ItemDecoration() {
     /***
      * 在item 的draw 之前调用
      */
-    override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State?) {
+    override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         val childCount = parent.childCount
         var left = parent.paddingLeft
         if (!includePadding) {
@@ -77,7 +77,7 @@ class VerticalItemDecoration : RecyclerView.ItemDecoration() {
     /***
      * 在item 的draw 之后调用
      */
-    override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State?) {
+    override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDrawOver(c, parent, state)
 
         if (showHeaderDivider && parent.childCount > 0) {

@@ -28,7 +28,7 @@ import shivam.developer.featuredrecyclerview.FeaturedRecyclerView
 class ImageListFragment : Fragment() {
 
     companion object {
-        val pageCount = 10
+        const val pageCount = 10
     }
 
     private lateinit var adapter: ImageAdapter
@@ -39,15 +39,15 @@ class ImageListFragment : Fragment() {
 
     private var isLoading = false
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflater?.inflate(R.layout.fragment_image_list, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+            inflater.inflate(R.layout.fragment_image_list, container, false)
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerView = view?.findViewById(R.id.fragment_image_list_recycler_view) as FeaturedRecyclerView
+        val recyclerView = view.findViewById(R.id.fragment_image_list_recycler_view) as FeaturedRecyclerView
         recyclerView.layoutManager = FeatureLinearLayoutManager(activity)
-        adapter = ImageAdapter(activity, images, object : RecyclerViewItemClickListener {
+        adapter = ImageAdapter(activity!!, images, object : RecyclerViewItemClickListener {
             override fun onItemClick(holder: BaseRecyclerHolder, position: Int) {
 
                 val intent = Intent(activity, BigImageActivity::class.java)

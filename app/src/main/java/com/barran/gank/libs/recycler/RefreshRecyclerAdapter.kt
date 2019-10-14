@@ -58,9 +58,9 @@ abstract class RefreshRecyclerAdapter<T>(private val dataList: List<T>, itemClic
         }
     }
 
-    final override fun createHolder(parent: ViewGroup?, viewType: Int): BaseRecyclerHolder {
+    final override fun createHolder(parent: ViewGroup, viewType: Int): BaseRecyclerHolder {
         return if (viewType == TYPE_FOOTER) {
-            val footer = LayoutInflater.from(parent?.context).inflate(R.layout.item_refresh_list_footer, parent, false)
+            val footer = LayoutInflater.from(parent.context).inflate(R.layout.item_refresh_list_footer, parent, false)
             FooterViewHolder(footer, itemClickListener)
         } else {
             createContentHolder(parent, viewType)
@@ -70,7 +70,7 @@ abstract class RefreshRecyclerAdapter<T>(private val dataList: List<T>, itemClic
     abstract fun createContentHolder(parent: ViewGroup?, viewType: Int): BaseRecyclerHolder
 
     @CallSuper
-    override fun onBindViewHolder(holder: BaseRecyclerHolder?, position: Int) {
+    override fun onBindViewHolder(holder: BaseRecyclerHolder, position: Int) {
         if (position == dataList.size) {
             holder as FooterViewHolder
             pbLoading = holder.progressBarLoading

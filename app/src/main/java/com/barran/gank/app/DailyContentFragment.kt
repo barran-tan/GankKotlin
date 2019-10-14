@@ -55,10 +55,7 @@ class DailyContentFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var time: String? = null
-        if (arguments != null) {
-            time = arguments.getString(EXTRA_DATE)
-        }
+        val time: String? = arguments?.getString(EXTRA_DATE)
         if (time != null) {
             date.timeInMillis = time.toTimeMillis()
         } else {
@@ -67,10 +64,10 @@ class DailyContentFragment : Fragment() {
 
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflater?.inflate(R.layout.fragment_daily_info, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+            inflater.inflate(R.layout.fragment_daily_info, container, false)
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         initView(view)
@@ -91,7 +88,7 @@ class DailyContentFragment : Fragment() {
                 data.url?.let { DataCache.cache.setRead(data.url!!, true) }
 
                 if (data.url != null) {
-                    viewInfo(activity, data)
+                    viewInfo(activity!!, data)
                 }
             }
         })
@@ -99,10 +96,10 @@ class DailyContentFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.addItemDecoration(object : RecyclerView.ItemDecoration() {
 
-            val margin = activity.resources.getDimensionPixelOffset(R.dimen.default_dimen_margin)
+            val margin = activity!!.resources.getDimensionPixelOffset(R.dimen.default_dimen_margin)
 
             override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView,
-                                        state: RecyclerView.State?) {
+                                        state: RecyclerView.State) {
 
                 if (adapter.getItemViewType(
                         (view.layoutParams as RecyclerView.LayoutParams)
@@ -127,13 +124,13 @@ class DailyContentFragment : Fragment() {
                         val url = it.value[0].url
                         image.load(url)
 
-                        image.setOnClickListener({
+                        image.setOnClickListener {
                             val intent = Intent(activity, BigImageActivity::class.java)
                             val images = ArrayList<String>(1)
                             images.add(url!!)
                             intent.putStringArrayListExtra(EXTRA_IMAGE_LIST, images)
                             startActivity(intent)
-                        })
+                        }
                     } else {
                         val group = DataInfo()
                         group.type = it.key
@@ -157,15 +154,16 @@ class DailyContentFragment : Fragment() {
     }
 
     private inner class Adapter(clickListener: RecyclerViewItemClickListener?) : BaseRecyclerAdapter(clickListener) {
-        override fun createHolder(parent: ViewGroup?, viewType: Int): BaseRecyclerHolder =
+
+        override fun createHolder(parent: ViewGroup, viewType: Int): BaseRecyclerHolder =
                 when (viewType) {
-                    TYPE_GROUP -> GroupHolder(activity.layoutInflater.inflate(R.layout.item_daily_info_group, parent, false))
-                    TYPE_CONTENT -> ItemHolder(activity.layoutInflater.inflate(R.layout.item_daily_info_content, parent, false), itemClickListener)
+                    TYPE_GROUP -> GroupHolder(activity!!.layoutInflater.inflate(R.layout.item_daily_info_group, parent, false))
+                    TYPE_CONTENT -> ItemHolder(activity!!.layoutInflater.inflate(R.layout.item_daily_info_content, parent, false), itemClickListener)
                     else
                     -> throw IllegalArgumentException()
                 }
 
-        override fun onBindViewHolder(holder: BaseRecyclerHolder?, position: Int) {
+        override fun onBindViewHolder(holder: BaseRecyclerHolder, position: Int) {
             if (holder is ItemHolder) {
                 holder.update(contentList[position])
             } else if (holder is GroupHolder) {
@@ -183,7 +181,7 @@ class DailyContentFragment : Fragment() {
 
         private val tvTitle = itemView.findViewById(R.id.item_daily_info_group_type) as TextView
 
-        private val divider = itemView.findViewById(R.id.item_daily_info_group_divider)
+        private val divider = itemView.findViewById<View>(R.id.item_daily_info_group_divider)
 
         fun update(data: DataInfo) {
 
@@ -215,7 +213,7 @@ class ItemHolder(itemView: View, clickListener: RecyclerViewItemClickListener?) 
         if (data.images != null && data.images!!.isNotEmpty()) {
             image.load(data.images!![0])
         } else {
-            image.setImageResource(R.mipmap.empty);
+            image.setImageResource(R.mipmap.empty)
         }
         title.text = data.desc
         author.text = data.who ?: "unknown"

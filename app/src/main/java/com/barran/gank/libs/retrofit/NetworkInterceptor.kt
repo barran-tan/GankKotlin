@@ -22,7 +22,7 @@ class NetworkInterceptor : Interceptor {
             request = request?.newBuilder()?.cacheControl(CacheControl.FORCE_CACHE)?.build()
         }
 
-        var response = chain?.proceed(request!!)
+        val response = chain?.proceed(request!!)
         return if (NetUtils.isNetworkAvailable) {//有网络情况下，根据请求接口的设置，配置缓存。
             //这样在下次请求时，根据缓存决定是否真正发出请求。
             val cacheControl = request?.cacheControl().toString()

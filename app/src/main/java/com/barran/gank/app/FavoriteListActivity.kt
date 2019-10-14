@@ -23,11 +23,11 @@ class FavoriteListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_viewed_info_list)
 
-        setSupportActionBar(findViewById(R.id.activity_viewed_info_list_toolbar) as Toolbar)
+        setSupportActionBar(findViewById<Toolbar>(R.id.activity_viewed_info_list_toolbar))
 
         dataList = DataCache.cache.getFavoriteDataList()
 
-        val recyclerView = findViewById(R.id.fragment_viewed_info_list_recycler_view) as RecyclerView
+        val recyclerView = findViewById<RecyclerView>(R.id.fragment_viewed_info_list_recycler_view)
 
         val adapter = DataAdapter(object : RecyclerViewItemClickListener {
             override fun onItemClick(holder: BaseRecyclerHolder, position: Int) {
@@ -54,10 +54,10 @@ class FavoriteListActivity : AppCompatActivity() {
         : BaseRecyclerAdapter(clickListener) {
         override fun getItemCount(): Int = dataList.size
 
-        override fun createHolder(parent: ViewGroup?, viewType: Int): BaseRecyclerHolder =
+        override fun createHolder(parent: ViewGroup, viewType: Int): BaseRecyclerHolder =
                 ItemHolder(layoutInflater.inflate(R.layout.item_daily_info_content, parent, false), itemClickListener)
 
-        override fun onBindViewHolder(holder: BaseRecyclerHolder?, position: Int) {
+        override fun onBindViewHolder(holder: BaseRecyclerHolder, position: Int) {
             if (holder is ItemHolder) {
                 holder.hideDivider = true
                 holder.update(dataList[position], false)

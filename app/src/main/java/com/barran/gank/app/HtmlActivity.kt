@@ -17,9 +17,9 @@ class HtmlActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_html)
-        setSupportActionBar(findViewById(R.id.activity_html_toolbar) as Toolbar)
+        setSupportActionBar(findViewById<Toolbar>(R.id.activity_html_toolbar))
 
-        val web = findViewById(R.id.activity_html_web) as WebView
+        val web = findViewById<WebView>(R.id.activity_html_web)
         if (intent?.hasExtra(EXTRA_URL) == true) {
             url = intent.getStringExtra(EXTRA_URL)
             web.loadUrl(url)

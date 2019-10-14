@@ -1,10 +1,8 @@
 package com.barran.gank.libs.retrofit
 
-import java.io.IOException
-
 import okhttp3.Interceptor
-import okhttp3.Request
 import okhttp3.Response
+import java.io.IOException
 
 /**
  * 顶级拦截器，设置统一header等
@@ -22,7 +20,7 @@ internal class BaseInterceptor(private val headers: Map<String, String>?) : Inte
         if (headers != null && headers.isNotEmpty()) {
             val keys = headers.keys
             keys.filter { headers[it] != null }.forEach { key ->
-                builder.addHeader(key, headers[key]!!).build()
+                builder.addHeader(key, headers[key] ?: error("")).build()
             }
         }
         return chain.proceed(builder.build())

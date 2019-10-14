@@ -53,10 +53,10 @@ class BigImageActivity : AppCompatActivity() {
 
         })
 
-        indexText = findViewById(R.id.activity_big_image_index) as TextView
+        indexText = findViewById(R.id.activity_big_image_index)
         updateIndex()
 
-        val download = findViewById(R.id.activity_big_image_download)
+        val download = findViewById<View>(R.id.activity_big_image_download)
         download.setOnClickListener {
             imageList[index].download()
         }

@@ -21,12 +21,12 @@ import java.util.concurrent.TimeUnit
 
 class RetrofitClient private constructor() {
 
-    lateinit var retrofit: Retrofit
+    private lateinit var retrofit: Retrofit
 
     lateinit var apiService : APIService
 
     companion object {
-        val DEFAULT_TIMEOUT = 20L
+        const val DEFAULT_TIMEOUT = 20L
         val instance = RetrofitClient()
     }
 
