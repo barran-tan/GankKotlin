@@ -7,7 +7,8 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/activity_about_toolbar"
         style="@style/ToolbarStyle"
-        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <TextView
@@ -20,6 +21,7 @@
         android:text="@string/text_realized_functions_title"
         android:textColor="@color/text_black"
         android:textSize="@dimen/font_size_16"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/activity_about_toolbar" />
 
     <TextView
@@ -32,6 +34,7 @@
         android:text="@string/text_realized_functions_list"
         android:textColor="@color/text_gray"
         android:textSize="@dimen/font_size_14"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/activity_about_tv_functions_realized_title" />
 
     <TextView
@@ -44,6 +47,7 @@
         android:text="@string/text_functions_todo_title"
         android:textColor="@color/text_black"
         android:textSize="@dimen/font_size_16"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/activity_about_tv_functions_realized_list" />
 
     <TextView
@@ -56,6 +60,7 @@
         android:text="@string/text_functions_todo_list"
         android:textColor="@color/text_gray"
         android:textSize="@dimen/font_size_14"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/activity_about_tv_functions_todo_title" />
 
     <TextView
@@ -68,6 +73,7 @@
         android:text="@string/text_libraries_title"
         android:textColor="@color/text_black"
         android:textSize="@dimen/font_size_16"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/activity_about_tv_functions_todo_list" />
 
     <TextView
@@ -80,6 +86,7 @@
         android:text="@string/text_libraries_list"
         android:textColor="@color/text_gray"
         android:textSize="@dimen/font_size_14"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/activity_about_tv_libraries_title" />
 
     <TextView
@@ -92,6 +99,7 @@
         android:text="@string/text_github_title"
         android:textColor="@color/text_black"
         android:textSize="@dimen/font_size_16"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/activity_about_tv_libraries_list" />
 
     <TextView
@@ -105,6 +113,7 @@
         android:text="@string/text_github_url"
         android:textColor="@color/text_gray"
         android:textSize="@dimen/font_size_14"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/activity_about_tv_github_title" />
 
     <TextView
@@ -117,6 +126,7 @@
         android:text="@string/text_gank_api_title"
         android:textColor="@color/text_black"
         android:textSize="@dimen/font_size_16"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/activity_about_tv_github" />
 
     <TextView
@@ -130,6 +140,7 @@
         android:text="@string/text_gank_api_url"
         android:textColor="@color/text_gray"
         android:textSize="@dimen/font_size_14"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/activity_about_tv_gank_title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
