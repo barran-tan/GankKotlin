@@ -18,7 +18,7 @@ class HistoryDatesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_empty)
-        setSupportActionBar(findViewById<Toolbar>(R.id.activity_empty_toolbar))
+        setSupportActionBar(findViewById(R.id.activity_empty_toolbar))
 
         push(R.id.activity_empty_container, HistoryDatesFragment())
     }

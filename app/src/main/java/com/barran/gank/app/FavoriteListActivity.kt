@@ -23,7 +23,7 @@ class FavoriteListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_viewed_info_list)
 
-        setSupportActionBar(findViewById<Toolbar>(R.id.activity_viewed_info_list_toolbar))
+        setSupportActionBar(findViewById(R.id.activity_viewed_info_list_toolbar))
 
         dataList = DataCache.cache.getFavoriteDataList()
 

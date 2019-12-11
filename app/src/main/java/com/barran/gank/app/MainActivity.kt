@@ -2,22 +2,22 @@ package com.barran.gank.app
 
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.navigation.NavigationView
-import com.google.android.material.tabs.TabLayout
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentPagerAdapter
-import androidx.viewpager.widget.ViewPager
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import android.util.SparseArray
-import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.barran.gank.R
 import com.barran.gank.api.beans.GankDataType
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 /**
  * @author tanwei
@@ -38,14 +38,18 @@ class MainActivity : AppCompatActivity() {
         fragments = SparseArray(GankDataType.values().size)
 
         val tabLayout = findViewById<TabLayout>(R.id.activity_main_tab_layout)
-        val viewPager = findViewById<ViewPager>(R.id.activity_main_tab_viewpager)
+        val viewPager = findViewById<ViewPager2>(R.id.activity_main_tab_viewpager)
         initViewPager(viewPager)
 
         val toolBar = findViewById<Toolbar>(R.id.activity_main_toolbar)
         setSupportActionBar(toolBar)
 
         // 绑定到viewpager
-        tabLayout.setupWithViewPager(viewPager)
+//        tabLayout.setupWithViewPager(viewPager)
+        // ViewPager2需要使用TabLayoutMediator
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            tab.text = getPageTitle(position)
+        }.attach()
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {
             }
@@ -69,9 +73,10 @@ class MainActivity : AppCompatActivity() {
         initDrawerMenu()
     }
 
-    private fun initViewPager(viewPager: ViewPager) {
-        viewPager.adapter = object : androidx.fragment.app.FragmentPagerAdapter(supportFragmentManager) {
-            override fun getItem(position: Int): Fragment {
+    private fun initViewPager(viewPager: ViewPager2) {
+        viewPager.adapter = object : FragmentStateAdapter(this) {
+
+            override fun createFragment(position: Int): Fragment {
                 val fragment: Fragment
                 if (fragments.get(position) != null) {
                     fragment = fragments.get(position)
@@ -97,12 +102,12 @@ class MainActivity : AppCompatActivity() {
                 return fragment
             }
 
-            override fun getCount(): Int = typeArray.size
-
-            override fun getPageTitle(position: Int): CharSequence =
-                    GankDataType.getName(typeArray[position])
+            override fun getItemCount(): Int = typeArray.size
         }
     }
+
+    private fun getPageTitle(position: Int): CharSequence =
+            GankDataType.getName(typeArray[position])
 
     private fun initDrawerMenu() {
 
