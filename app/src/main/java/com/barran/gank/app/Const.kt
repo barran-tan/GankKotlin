@@ -1,8 +1,8 @@
 package com.barran.gank.app
 
-import android.app.Activity
 import android.content.Intent
 import android.net.Uri
+import androidx.fragment.app.FragmentActivity
 import com.barran.gank.api.beans.DataInfo
 import com.barran.gank.api.beans.GankDataType
 
@@ -23,7 +23,7 @@ const val EXTRA_INDEX = "index"
 
 const val EXTRA_INFO_TYPE = "extra_info_type"
 
-fun viewInfo(activity: Activity, data: DataInfo) {
+fun viewInfo(activity: FragmentActivity, data: DataInfo) {
     if (GankDataType.PAST_TIME.typeName == data.type) {
         viewInWeb(activity, data.url)
     } else {
@@ -33,7 +33,7 @@ fun viewInfo(activity: Activity, data: DataInfo) {
     }
 }
 
-fun viewInWeb(activity: Activity, url: String?) {
+fun viewInWeb(activity: FragmentActivity, url: String?) {
     if(url.isNullOrBlank()){
         return
     }

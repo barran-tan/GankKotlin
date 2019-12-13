@@ -15,6 +15,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.barran.gank.R
 import com.barran.gank.api.beans.GankDataType
+import com.barran.gank.app.paging.DataListPagingFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -92,10 +93,14 @@ class MainActivity : AppCompatActivity() {
                                 else -> GankDataType.ANDROID.ordinal
                             }
 
-                    fragment = DataListFragment()
-                    val bundle = Bundle()
-                    bundle.putInt(EXTRA_INFO_TYPE, infoType)
-                    fragment.arguments = bundle
+                    if (infoType == GankDataType.ANDROID.ordinal) {
+                        fragment = DataListPagingFragment(GankDataType.getName(infoType))
+                    } else {
+                        fragment = DataListFragment()
+                        val bundle = Bundle()
+                        bundle.putInt(EXTRA_INFO_TYPE, infoType)
+                        fragment.arguments = bundle
+                    }
                     fragments.put(position, fragment)
                 }
 
